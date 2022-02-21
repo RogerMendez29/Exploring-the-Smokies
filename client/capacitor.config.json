@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "Exploring The smokies",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
