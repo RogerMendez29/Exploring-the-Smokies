@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_205008) do
   create_table "saved_trails", force: :cascade do |t|
     t.integer "user_id"
     t.integer "trail_id"
-    t.boolean "completed"
+    t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_205008) do
     t.float "roundtrip"
     t.integer "elevation_gain"
     t.integer "difficulty"
-    t.boolean "popular"
+    t.boolean "popular", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

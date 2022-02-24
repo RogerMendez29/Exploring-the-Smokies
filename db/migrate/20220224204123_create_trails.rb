@@ -7,7 +7,7 @@ class CreateTrails < ActiveRecord::Migration[6.1]
       t.float :roundtrip
       t.integer :elevation_gain
       t.integer :difficulty
-      t.boolean :popular
+      t.boolean :popular, default: false
 
       t.timestamps
     end
