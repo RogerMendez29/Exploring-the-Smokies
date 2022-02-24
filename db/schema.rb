@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_201311) do
+ActiveRecord::Schema.define(version: 2022_02_24_205008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,36 @@ ActiveRecord::Schema.define(version: 2022_02_24_201311) do
     t.string "last_name"
     t.text "email"
     t.text "bio"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "trail_id"
+    t.string "name"
+    t.text "comment"
+    t.integer "difficulty_rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "saved_trails", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "trail_id"
+    t.boolean "completed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "trails", force: :cascade do |t|
+    t.string "trail_name"
+    t.string "features"
+    t.text "image_url"
+    t.float "roundtrip"
+    t.integer "elevation_gain"
+    t.integer "difficulty"
+    t.boolean "popular"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

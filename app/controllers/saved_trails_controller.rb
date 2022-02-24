@@ -1,0 +1,2 @@
+class SavedTrailsController < ApplicationController
+end

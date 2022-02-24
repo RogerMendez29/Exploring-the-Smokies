@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :reviews
+  resources :saved_trails
+  resources :trails
+  resources :trail_names
   resources :profiles
   resources :users
 
