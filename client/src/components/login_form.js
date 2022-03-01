@@ -41,7 +41,7 @@ function LoginForm({ setCurrentUser }) {
   return (
     <div className="login-card">
       <Redirect to="/" />
-      
+
       <IonCard class="login-form">
         <form onSubmit={handleSubmit}>
           <IonCardHeader>

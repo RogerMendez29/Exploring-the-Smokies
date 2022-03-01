@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: center;
+  background-image: url("../photos/home_bg.jpg");
+  background-size: 100% 100%;
+  align-items: center;
+
+  height: 50%;
+}
+
+.trail-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}

@@ -7,22 +7,12 @@ import "../css/signup.css";
 
 
 
-import {
-  IonInput,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonButton,
-  IonItem,
-  IonLabel,
-} from "@ionic/react";
+
 
 function Signup({ setCurrentUser }) {
     return (
-        <IonPage>
-          <IonContent class="signup-content">
+        <IonPage className="signup-page">
             <SignupForm setCurrentUser={setCurrentUser}/>
-          </IonContent>
         </IonPage>
       );
   

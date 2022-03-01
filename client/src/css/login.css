@@ -21,17 +21,21 @@
   background-color: rgba(245, 239, 239, 0.5);
 }
 .login-btn {
-    width: 50%;
-  }
+  width: 50%;
+}
 
 .login-content {
   align-items: center;
-  border: 5px solid red;
   display: flex;
   justify-content: center;
-  background-color: aqua !important;
+}
+
+.login-page {
+  background-image: url("../photos/login_bg.jpg") !important;
+  background-repeat: no-repeat;
+  background-size: cover;
   
+
 }
-ion-content{
-    --background: #fff url('../photos/login_bg.jpg') no-repeat center center / cover;
-}
+
+

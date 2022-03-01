@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import AuthApp from "./components/auth_app";
 import UnauthApp from "./components/unauth_app";
-
+import "./css/app.css"
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -29,6 +29,7 @@ setupIonicReact();
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  
 
   useEffect(() => {
     fetch("/me", {
@@ -49,9 +50,9 @@ function App() {
   return (
     <BrowserRouter>
       {currentUser ? (
-        <AuthApp setCurrentUser={setCurrentUser} />
+        <AuthApp setCurrentUser={setCurrentUser} currentUser={currentUser} />
       ) : (
-        <UnauthApp setCurrentUser={setCurrentUser} />
+        <UnauthApp setCurrentUser={setCurrentUser}  />
       )}
     </BrowserRouter>
   );

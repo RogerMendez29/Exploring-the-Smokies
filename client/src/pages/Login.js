@@ -7,10 +7,10 @@ import { IonContent, IonPage } from "@ionic/react";
 
 function Login({ setCurrentUser }) {
     return (
-        <IonPage>
-          <IonContent class="login-content">
+        <IonPage className="login-page">
+          {/* <IonContent class="login-content"> */}
             <LoginForm setCurrentUser={setCurrentUser}/>
-          </IonContent>
+          {/* </IonContent> */}
         </IonPage>
       );
   

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
-import { IonReactRouter as router } from "@ionic/react-router";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+
 
 function UnauthApp({ setCurrentUser }) {
   return (
