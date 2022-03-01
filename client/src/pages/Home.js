@@ -12,9 +12,14 @@ import "../css/home.css";
 import Trail_card from "../components/trail_card";
 
 function Home({ currentUser }) {
-  console.log(currentUser.username);
+  const [currentHour, setCurrentHour] = useState("");
 
   const [trails, setTrails] = useState([]);
+
+  useEffect(() => {
+    let hours = new Date().getHours();
+    setCurrentHour(hours);
+  }, []);
 
   useEffect(() => {
     fetch("/trails")
@@ -29,11 +34,26 @@ function Home({ currentUser }) {
     return trail_cards;
   }
   function welcomeMsg(currentUser) {
-    return `Welcome ${
-      currentUser.profile?.first_name
-        ? currentUser.profile.first_name
-        : currentUser.username
-    }`;
+    if (currentHour > 12 && currentHour < 18) {
+      return `Good Afternoon ${
+        currentUser.profile?.first_name
+          ? currentUser.profile.first_name
+          : currentUser.username
+      }`;
+    }
+    if (currentHour > 18) {
+      return `Good Evening ${
+        currentUser.profile?.first_name
+          ? currentUser.profile.first_name
+          : currentUser.username
+      }`;
+    } else {
+      return `Good Morning ${
+        currentUser.profile?.first_name
+          ? currentUser.profile.first_name
+          : currentUser.username
+      }`;
+    }
   }
 
   return (
