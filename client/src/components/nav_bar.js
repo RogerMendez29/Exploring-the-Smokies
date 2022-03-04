@@ -11,62 +11,82 @@ import {
   IonButton,
   IonList,
   IonItem,
+  IonLabel,
+  IonMenu,
+  IonPage,
+  IonMenuToggle,
+  IonNavLink,
 } from "@ionic/react";
 
 function NavBar({ logout }) {
+  function initPopover(e) {
+    const popover = e.target;
+    const logoutBtn = popover.querySelector("#logout-btn");
+
+    logoutBtn.addEventListener("click", () => {
+      logout();
+      popover.dismiss();
+    });
+  }
+
   return (
     <IonHeader>
       <IonToolbar>
         <div className="nav-links" slot="start">
-          <NavLink to="/home">Home</NavLink>
-          <NavLink to="/saved">Saved</NavLink>
-          <NavLink to="/explore">Explore</NavLink>
+          <NavLink to="/home" activeClassName="active" className="nav-link">
+            Home
+          </NavLink>
+          <NavLink to="/saved" activeClassName="active" className="nav-link">
+            Saved
+          </NavLink>
+          <NavLink to="/explore" activeClassName="active" className="nav-link">
+            Explore
+          </NavLink>
         </div>
         <IonTitle>Exploring The Smokies</IonTitle>
 
         <IonAvatar className="avatar" slot="end" id="trigger-button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="ionicon"
+            className="ionicon"
             viewBox="0 0 512 512"
           >
-            <title>Person</title>
-            <path
-              d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="32"
-            />
-            <path
-              d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z"
-              fill="none"
-              stroke="currentColor"
-              stroke-miterlimit="10"
-              stroke-width="32"
-            />
+            <title>Person Circle</title>
+            <path d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm-50.22 116.82C218.45 151.39 236.28 144 256 144s37.39 7.44 50.11 20.94c12.89 13.68 19.16 32.06 17.68 51.82C320.83 256 290.43 288 256 288s-64.89-32-67.79-71.25c-1.47-19.92 4.79-38.36 17.57-51.93zM256 432a175.49 175.49 0 01-126-53.22 122.91 122.91 0 0135.14-33.44C190.63 329 222.89 320 256 320s65.37 9 90.83 25.34A122.87 122.87 0 01382 378.78 175.45 175.45 0 01256 432z" />
           </svg>
         </IonAvatar>
 
-        <IonPopover trigger="trigger-button">
+        <IonPopover
+          onDidPresent={initPopover}
+          trigger="trigger-button"
+          triggerAction="hover"
+        >
           <IonContent>
             <IonList>
               <IonItem>
-                <NavLink to="/profile">Profile</NavLink>
+                <NavLink
+                  activeClassName="active"
+                  className="nav-link"
+                  to="/profile"
+                >
+                  Profile
+                </NavLink>
               </IonItem>
               <IonItem>
-                <NavLink to="/Reviews">Reviews</NavLink>
+                <NavLink
+                  activeClassName="active"
+                  className="nav-link"
+                  to="/reviews"
+                >
+                  Reviews
+                </NavLink>
               </IonItem>
-              <IonItem>
-                <IonButton onClick={() => logout()}>Log Out</IonButton>
+              <IonItem button id="logout-btn">
+                <IonButton> Log Out</IonButton>
               </IonItem>
             </IonList>
           </IonContent>
         </IonPopover>
-        <IonButton slot="end" onClick={() => logout()}>
-          Log Out
-        </IonButton>
       </IonToolbar>
     </IonHeader>
   );

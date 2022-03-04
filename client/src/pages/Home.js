@@ -11,25 +11,24 @@ import "../css/home.css";
 
 import Trail_card from "../components/trail_card";
 
-function Home({ currentUser }) {
-  const [currentHour, setCurrentHour] = useState("");
-
-  const [trails, setTrails] = useState([]);
-
-  useEffect(() => {
-    let hours = new Date().getHours();
-    setCurrentHour(hours);
-  }, []);
-
-  useEffect(() => {
-    fetch("/trails")
-      .then((res) => res.json())
-      .then((trails) => setTrails(trails));
-  }, []);
-
+function Home({
+  currentUser,
+  currentHour,
+  trails,
+  setSavedTrails,
+  savedTrails,
+}) {
   function renderTrails(trails) {
     const trail_cards = trails.map((trail) => {
-      return <Trail_card trail={trail} />;
+      return (
+        <Trail_card
+          savedTrails={savedTrails}
+          currentUser={currentUser}
+          trail={trail}
+          key={trail.id}
+          setSavedTrails={setSavedTrails}
+        />
+      );
     });
     return trail_cards;
   }
@@ -41,7 +40,7 @@ function Home({ currentUser }) {
           : currentUser.username
       }`;
     }
-    if (currentHour > 18) {
+    if (currentHour > 18 || currentHour === 18) {
       return `Good Evening ${
         currentUser.profile?.first_name
           ? currentUser.profile.first_name

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   
   resources :reviews
-  resources :saved_trails
-  resources :trails
-  resources :profiles
-  resources :users
+  resources :saved_trails, except: [:update]
+  resources :trails, only: [:index,:show]
+  resources :profiles, except: [:destroy]
+  resources :users, except: [:update, :destroy]
 
   get "/me", to: "users#show"
   post "/signup", to: "users#create"

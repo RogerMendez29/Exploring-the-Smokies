@@ -8,7 +8,19 @@ import TrailPage from "../components/trail_page";
 import Profile from "../pages/Profile";
 import Reviews from "../pages/Profile";
 
-function AuthApp({ setCurrentUser, currentUser }) {
+function AuthApp({ setCurrentUser, currentUser, savedTrails, setSavedTrails }) {
+  const [currentHour, setCurrentHour] = useState("");
+
+  const [trails, setTrails] = useState([]);
+
+  useEffect(() => {
+    let hours = new Date().getHours();
+    setCurrentHour(hours);
+    fetch("/trails")
+      .then((res) => res.json())
+      .then((trails) => setTrails(trails));
+  }, []);
+
   function handleLogOut() {
     fetch(`/logout`, {
       method: "DELETE",
@@ -22,14 +34,24 @@ function AuthApp({ setCurrentUser, currentUser }) {
 
   return (
     <div>
-      <Redirect to="/home" />
       <NavBar logout={handleLogOut} />
       <Switch>
         <Route path="/home">
-          <Home currentUser={currentUser} />
+          <Home
+            currentUser={currentUser}
+            currentHour={currentHour}
+            trails={trails}
+            setSavedTrails={setSavedTrails}
+            savedTrails={savedTrails}
+          />
         </Route>
         <Route path="/saved">
-          <Saved />
+          <Saved
+            currentUser={currentUser}
+            trails={trails}
+            setSavedTrails={setSavedTrails}
+            savedTrails={savedTrails}
+          />
         </Route>
         <Route path="/explore">
           <Explore />
@@ -43,6 +65,7 @@ function AuthApp({ setCurrentUser, currentUser }) {
         <Route path="/reviews">
           <Reviews />
         </Route>
+        <Redirect to="/home" />
       </Switch>
     </div>
   );

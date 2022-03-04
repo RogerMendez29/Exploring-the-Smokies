@@ -6,3 +6,17 @@
 .avatar {
   cursor: pointer;
 }
+
+.nav-link {
+  color: rgb(73, 72, 72);
+  text-decoration: none;
+}
+.nav-link:hover {
+  color: #4299e1;
+  background-color: #ebf8ff;
+}
+
+.active {
+  color: #4299e1;
+  background-color: #ebf8ff;
+}

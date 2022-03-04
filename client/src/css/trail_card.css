@@ -1,9 +1,33 @@
-.trail_card {
+/* .svg {
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 50px;
-  height: 30px;
-}
+  height: 50px;
+} */
 
 .trail-image {
   height: 150px;
   width: 325px;
+}
+
+.bookmark {
+  position: absolute;
+  height: 35px;
+  top: 0;
+  right: 0;
+
+  color: white;
+  cursor: pointer;
+  /* fill: rgb(177, 177, 48); */
+}
+.bookmark:hover {
+  background-color: rgba(245, 239, 239, 0.5);
+}
+.bookmark:focus {
+  fill: yellow;
+}
+
+.card-title {
+  cursor: pointer;
 }
