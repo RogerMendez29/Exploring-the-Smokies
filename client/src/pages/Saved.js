@@ -10,15 +10,13 @@ import {
 } from "@ionic/react";
 import "../css/home.css";
 
-function Saved({ savedTrails, trails, currentUser, setSavedTrails }) {
+function Saved({ trails, currentUser, setSavedTrails, trailIds }) {
   function renderSavedTrails() {
-    const trailIds = savedTrails.map((trail) => {
-      return trail.trail_id;
-    });
     const trail_cards = trails.map((trail) => {
       if (trailIds.includes(trail.id)) {
         return (
           <Trail_card
+            trailIds={trailIds}
             setSavedTrails={setSavedTrails}
             currentUser={currentUser}
             trail={trail}

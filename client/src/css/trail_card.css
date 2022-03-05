@@ -1,10 +1,27 @@
-/* .svg {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50px;
-  height: 50px;
-} */
+x .ionicon {
+  position: relative;
+  transition-duration: 500ms;
+}
+.ionicon:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.container-card {
+  position: relative;
+  transition-duration: 500ms;
+}
+.container-card:hover {
+  transform: scale(1.1);
+}
+ion-card-title {
+  position: relative;
+  transition-duration: 500ms;
+}
+ion-card-title:hover {
+  cursor: pointer;
+  transform: scale(1.035);
+  color: #4299e1;
+}
 
 .trail-image {
   height: 150px;
@@ -13,19 +30,26 @@
 
 .bookmark {
   position: absolute;
-  height: 35px;
+  height: 32px;
+  margin: 5px;
+
   top: 0;
   right: 0;
 
-  color: white;
+  fill: rgb(240, 240, 231);
+}
+
+.saved-bookmark {
+  margin: 5px;
+
+  position: absolute;
+  height: 32px;
+  top: 0;
+  right: 0;
+
   cursor: pointer;
-  /* fill: rgb(177, 177, 48); */
-}
-.bookmark:hover {
-  background-color: rgba(245, 239, 239, 0.5);
-}
-.bookmark:focus {
-  fill: yellow;
+  opacity: 1;
+  fill: rgb(66, 138, 19);
 }
 
 .card-title {

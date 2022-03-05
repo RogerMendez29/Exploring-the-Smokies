@@ -20,3 +20,17 @@
   color: #4299e1;
   background-color: #ebf8ff;
 }
+
+.app-title {
+  background-color: white;
+
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  margin: 650px;
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+  height: 50px;
+  width: 10px;
+}

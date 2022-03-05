@@ -17,11 +17,13 @@ function Home({
   trails,
   setSavedTrails,
   savedTrails,
+  trailIds,
 }) {
   function renderTrails(trails) {
     const trail_cards = trails.map((trail) => {
       return (
         <Trail_card
+          trailIds={trailIds}
           savedTrails={savedTrails}
           currentUser={currentUser}
           trail={trail}

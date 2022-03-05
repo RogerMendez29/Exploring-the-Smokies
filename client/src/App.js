@@ -29,6 +29,7 @@ setupIonicReact();
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [savedTrails, setSavedTrails] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -53,13 +54,18 @@ function App() {
     <BrowserRouter>
       {currentUser ? (
         <AuthApp
+          setLoggedIn={setLoggedIn}
           setCurrentUser={setCurrentUser}
           currentUser={currentUser}
           savedTrails={savedTrails}
           setSavedTrails={setSavedTrails}
         />
       ) : (
-        <UnauthApp setCurrentUser={setCurrentUser} />
+        <UnauthApp
+          setCurrentUser={setCurrentUser}
+          setLoggedIn={setLoggedIn}
+          loggedIn={loggedIn}
+        />
       )}
     </BrowserRouter>
   );

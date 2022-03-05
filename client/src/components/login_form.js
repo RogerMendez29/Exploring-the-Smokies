@@ -12,7 +12,7 @@ import {
   IonLabel,
 } from "@ionic/react";
 
-function LoginForm({ setCurrentUser }) {
+function LoginForm({ setCurrentUser, setLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -28,19 +28,21 @@ function LoginForm({ setCurrentUser }) {
       if (res.ok) {
         res.json().then((user) => {
           setCurrentUser(user);
+          setLoggedIn(true);
+          
         });
       } else {
         res.json().then((errors) => {
           console.error(errors);
+          setLoggedIn(false);
         });
       }
-      console.log(username);
     });
   }
 
   return (
     <div className="login-card">
-      <Redirect to="/" />
+      {/* <Redirect to="/" /> */}
 
       <IonCard class="login-form">
         <form onSubmit={handleSubmit}>

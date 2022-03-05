@@ -6,9 +6,9 @@ import Saved from "../pages/Saved";
 import Explore from "../pages/Explore";
 import TrailPage from "../components/trail_page";
 import Profile from "../pages/Profile";
-import Reviews from "../pages/Profile";
+import Reviews from "../pages/Reviews";
 
-function AuthApp({ setCurrentUser, currentUser, savedTrails, setSavedTrails }) {
+function AuthApp({ setCurrentUser, currentUser, savedTrails, setSavedTrails, setLoggedIn }) {
   const [currentHour, setCurrentHour] = useState("");
 
   const [trails, setTrails] = useState([]);
@@ -16,6 +16,7 @@ function AuthApp({ setCurrentUser, currentUser, savedTrails, setSavedTrails }) {
   useEffect(() => {
     let hours = new Date().getHours();
     setCurrentHour(hours);
+    setLoggedIn(true);
     fetch("/trails")
       .then((res) => res.json())
       .then((trails) => setTrails(trails));
@@ -31,22 +32,17 @@ function AuthApp({ setCurrentUser, currentUser, savedTrails, setSavedTrails }) {
       }
     });
   }
+  let trailIds = savedTrails.map((trail) => {
+    return trail.trail_id;
+  });
 
   return (
     <div>
       <NavBar logout={handleLogOut} />
       <Switch>
-        <Route path="/home">
-          <Home
-            currentUser={currentUser}
-            currentHour={currentHour}
-            trails={trails}
-            setSavedTrails={setSavedTrails}
-            savedTrails={savedTrails}
-          />
-        </Route>
         <Route path="/saved">
           <Saved
+            trailIds={trailIds}
             currentUser={currentUser}
             trails={trails}
             setSavedTrails={setSavedTrails}
@@ -64,6 +60,16 @@ function AuthApp({ setCurrentUser, currentUser, savedTrails, setSavedTrails }) {
         </Route>
         <Route path="/reviews">
           <Reviews />
+        </Route>
+        <Route path="/home">
+          <Home
+            trailIds={trailIds}
+            currentUser={currentUser}
+            currentHour={currentHour}
+            trails={trails}
+            setSavedTrails={setSavedTrails}
+            savedTrails={savedTrails}
+          />
         </Route>
         <Redirect to="/home" />
       </Switch>

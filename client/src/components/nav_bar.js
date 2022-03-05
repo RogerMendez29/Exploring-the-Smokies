@@ -43,7 +43,9 @@ function NavBar({ logout }) {
             Explore
           </NavLink>
         </div>
-        <IonTitle>Exploring The Smokies</IonTitle>
+        <IonTitle>
+          <NavLink to="/home" className="app-title">Exploring The Smokies</NavLink>
+        </IonTitle>
 
         <IonAvatar className="avatar" slot="end" id="trigger-button">
           <svg

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Reviews() {
-  return "reviws";
+  return "reviews";
 }
 
 export default Reviews;
