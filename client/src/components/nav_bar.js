@@ -26,14 +26,14 @@ function NavBar({ logout }) {
     logoutBtn.addEventListener("click", () => {
       logout();
       popover.dismiss();
-    });
+    }); 
   }
 
   return (
     <IonHeader>
       <IonToolbar>
         <div className="nav-links" slot="start">
-          <NavLink to="/home" activeClassName="active" className="nav-link">
+          <NavLink to="/" activeClassName="active" className="nav-link">
             Home
           </NavLink>
           <NavLink to="/saved" activeClassName="active" className="nav-link">
@@ -44,7 +44,7 @@ function NavBar({ logout }) {
           </NavLink>
         </div>
         <IonTitle>
-          <NavLink to="/home" className="app-title">Exploring The Smokies</NavLink>
+          <NavLink to="/" className="app-title">Exploring The Smokies</NavLink>
         </IonTitle>
 
         <IonAvatar className="avatar" slot="end" id="trigger-button">

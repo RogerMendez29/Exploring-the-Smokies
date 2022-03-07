@@ -10,30 +10,26 @@ import {
 } from "@ionic/react";
 import "../css/home.css";
 
-function Saved({ trails, currentUser, setSavedTrails, trailIds }) {
+function Saved({ trails, currentUser, savedTrails, setSavedTrails, trailIds }) {
   function renderSavedTrails() {
-    const trail_cards = trails.map((trail) => {
-      if (trailIds.includes(trail.id)) {
-        return (
-          <Trail_card
-            trailIds={trailIds}
-            setSavedTrails={setSavedTrails}
-            currentUser={currentUser}
-            trail={trail}
-            key={trail.id}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-    return trail_cards;
+    return trails.map((trail) =>
+      trailIds.includes(trail.id) ? (
+        <Trail_card
+          trailIds={trailIds}
+          savedTrails={savedTrails}
+          setSavedTrails={setSavedTrails}
+          currentUser={currentUser}
+          trail={trail}
+          key={trail.id}
+        />
+      ) : null
+    );
   }
 
   return (
     <IonPage className="home-page">
-      <div className="saved_container"></div>
       <IonContent>
+        <div className="saved_container"></div>
         <IonTitle></IonTitle>
         <div className="trail-container">{renderSavedTrails()}</div>
       </IonContent>

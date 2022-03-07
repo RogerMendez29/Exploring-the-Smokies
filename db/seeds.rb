@@ -19,7 +19,7 @@
 # SavedTrail.create(user_id: 1, trail_id: 2, )
 # SavedTrail.create(user_id: 1, trail_id: 3, )
 
-# Review.create(user_id: 1, trail_id: 1, name: "roger", comment: "awesome trail, great for the family", difficulty_rating: 6)
+Review.create(user_id: 1, trail_id: 1, name: "Roger", comment: "Water fall was really nice to take pictures with. this trail is popular though so expect a crowd during busy times of the year.", difficulty_rating: 4)
 
 # Trail.create(trail_name: "Andrews Bald", features: "Panoramic Views", roundtrip: 3.5,   elevation_gain: 899, difficulty:  5, image_url: "https://res.cloudinary.com/dhzstgmsp/image/upload/v1646153593/Smoky%20Mountains%20Trails/andrews-bald_klel4r.jpg", description:"The trail begins from the Clingmans Dome parking lot and drops elevation to get to Andrews Bald. After a large descent, it levels on a broad ridge, soon diverting to the right at mile 1.1. A final ascension through a forest will bring you to the grassy Andrews Bald, named for the cattle herder, Andres Thompson, who brought livestock up here in the 1840s." )
 

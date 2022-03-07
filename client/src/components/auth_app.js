@@ -8,7 +8,13 @@ import TrailPage from "../components/trail_page";
 import Profile from "../pages/Profile";
 import Reviews from "../pages/Reviews";
 
-function AuthApp({ setCurrentUser, currentUser, savedTrails, setSavedTrails, setLoggedIn }) {
+function AuthApp({
+  setCurrentUser,
+  currentUser,
+  savedTrails,
+  setSavedTrails,
+  setLoggedIn,
+}) {
   const [currentHour, setCurrentHour] = useState("");
 
   const [trails, setTrails] = useState([]);
@@ -61,7 +67,7 @@ function AuthApp({ setCurrentUser, currentUser, savedTrails, setSavedTrails, set
         <Route path="/reviews">
           <Reviews />
         </Route>
-        <Route path="/home">
+        <Route path="/">
           <Home
             trailIds={trailIds}
             currentUser={currentUser}
@@ -71,7 +77,6 @@ function AuthApp({ setCurrentUser, currentUser, savedTrails, setSavedTrails, set
             savedTrails={savedTrails}
           />
         </Route>
-        <Redirect to="/home" />
       </Switch>
     </div>
   );

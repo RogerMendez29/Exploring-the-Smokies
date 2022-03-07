@@ -4,8 +4,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 
 function UnauthApp({ setCurrentUser, setLoggedIn, loggedIn }) {
-  console.log(loggedIn);
-  
+
   // function redirect() {
   //   if (loggedIn) {
   //     console.log(loggedIn);
@@ -14,7 +13,7 @@ function UnauthApp({ setCurrentUser, setLoggedIn, loggedIn }) {
   //   } else if (loggedIn === false) {
   //     console.log(loggedIn);
 
-  //     return <Redirect to="/" />;
+  // return <Redirect to="/" />;
   //   }
   // }
 
@@ -24,11 +23,14 @@ function UnauthApp({ setCurrentUser, setLoggedIn, loggedIn }) {
         <Route exact path="/signup">
           <Signup setCurrentUser={setCurrentUser} />
         </Route>
-        <Route exact path="/">
-          <Login setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} className="login_page" />
+        <Route path="/">
+          <Login
+            setCurrentUser={setCurrentUser}
+            setLoggedIn={setLoggedIn}
+            className="login_page"
+          />
         </Route>
       </Switch>
-      {/* {redirect()} */}
     </div>
   );
 }

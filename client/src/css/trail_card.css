@@ -13,14 +13,15 @@ x .ionicon {
 .container-card:hover {
   transform: scale(1.1);
 }
-ion-card-title {
-  position: relative;
+.card-title {
+  /* position: relative; */
   transition-duration: 500ms;
 }
-ion-card-title:hover {
+.card-title:hover {
+  color: #4299e1;
+
   cursor: pointer;
   transform: scale(1.035);
-  color: #4299e1;
 }
 
 .trail-image {

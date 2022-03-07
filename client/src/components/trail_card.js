@@ -2,45 +2,50 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import "../css/trail_card.css";
 
-function Trail_card({ trail, currentUser, setSavedTrails, trailIds }) {
+function Trail_card({
+  trail,
+  currentUser,
+  savedTrails,
+  setSavedTrails,
+  trailIds,
+}) {
   const [isSaved, setisSaved] = useState(false);
   let history = useHistory();
+
   function navToPage() {
     history.push(`/trail_page/${trail.id}`);
   }
 
   useEffect(() => {
     if (trailIds.includes(trail.id)) {
-      setisSaved(!isSaved);
+      setisSaved(true);
     }
   }, []);
 
   function handleBookmark() {
-    const savedTrailIds = currentUser.saved_trails.map((savedTrail) => {
-      if (savedTrail.trail_id === trail.id) {
-        return savedTrail.id;
-      } else {
-        return false;
-      }
-    });
-    const savedTrailId = savedTrailIds.filter((id) => {
-      return id > 1;
-    });
-    // console.log(currentUser);
-    // console.log(currentUser.saved_trails);
-
-    // console.log(savedTrailIds);
-    // console.log(savedTrailId);
+    const savedTrailIds = savedTrails.filter(
+      (savedTrail) => savedTrail.trail_id === trail.id
+    );
 
     if (trailIds.includes(trail.id)) {
-      fetch(`/saved_trails/${savedTrailId}`, {
+      fetch(`/saved_trails/${savedTrailIds[0]?.id}`, {
         method: "DELETE",
         credentials: "include",
-      }).then((res) => {
-        if (res.ok) {
-          setisSaved(!isSaved);
-        }
-      });
+      })
+        .then((res) => {
+          if (res.ok) {
+            console.log("Deleted");
+            setisSaved(false);
+          }
+        })
+        .then(() => {
+          fetch("/me")
+            .then((res) => res.json())
+            .then((user) => {
+              console.log(user.saved_trails);
+              setSavedTrails(user.saved_trails);
+            });
+        });
     } else {
       fetch("/saved_trails", {
         method: "POST",
@@ -53,17 +58,22 @@ function Trail_card({ trail, currentUser, setSavedTrails, trailIds }) {
           user_id: currentUser.id,
           trail_id: trail.id,
         }),
-      }).then((res) => {
-        if (res.ok) {
-          setisSaved(!isSaved);
-        }
-      });
+      })
+        .then((res) => {
+          if (res.ok) {
+            console.log("Saved");
+            setisSaved(true);
+          }
+        })
+        .then(() => {
+          fetch("/me")
+            .then((res) => res.json())
+            .then((user) => {
+              console.log(user.saved_trails);
+              setSavedTrails(user.saved_trails);
+            });
+        });
     }
-    fetch("/me")
-      .then((res) => res.json())
-      .then((user) => {
-        setSavedTrails(user.saved_trails);
-      });
   }
 
   return (
@@ -89,12 +99,15 @@ function Trail_card({ trail, currentUser, setSavedTrails, trailIds }) {
 
         <div className="header-container">
           <ion-card-header>
-            <div onClick={navToPage} className="title-container">
-              <ion-card-title>{trail.trail_name}</ion-card-title>
+            <div onClick={navToPage} className="">
+              <div className="card-title">
+                <ion-card-title>{trail.trail_name}</ion-card-title>
+              </div>
             </div>
 
             <ion-card-subtitle>
-              Difficulty: {trail.difficulty}  •  Roundtrip: {trail.roundtrip} Miles
+              Difficulty: {trail.difficulty} • Roundtrip: {trail.roundtrip}{" "}
+              Miles
             </ion-card-subtitle>
           </ion-card-header>
         </div>

@@ -20,18 +20,16 @@ function Home({
   trailIds,
 }) {
   function renderTrails(trails) {
-    const trail_cards = trails.map((trail) => {
-      return (
-        <Trail_card
-          trailIds={trailIds}
-          savedTrails={savedTrails}
-          currentUser={currentUser}
-          trail={trail}
-          key={trail.id}
-          setSavedTrails={setSavedTrails}
-        />
-      );
-    });
+    const trail_cards = trails.map((trail) => (
+      <Trail_card
+        trailIds={trailIds}
+        savedTrails={savedTrails}
+        currentUser={currentUser}
+        trail={trail}
+        key={trail.id}
+        setSavedTrails={setSavedTrails}
+      />
+    ));
     return trail_cards;
   }
   function welcomeMsg(currentUser) {
@@ -59,10 +57,10 @@ function Home({
 
   return (
     <IonPage className="home-page">
-      <div className="container">
-        <h1 className="welcome-msg">{welcomeMsg(currentUser)}</h1>
-      </div>
       <IonContent>
+        <div className="container">
+          <h1 className="welcome-msg">{welcomeMsg(currentUser)}</h1>
+        </div>
         <IonTitle>Top Trails In The Great Smokey Mountains</IonTitle>
         <div className="trail-container">{renderTrails(trails)}</div>
       </IonContent>

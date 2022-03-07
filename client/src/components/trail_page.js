@@ -1,19 +1,109 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "../css/trail_page.css";
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonItem,
+} from "@ionic/react";
 
 function Trail_page() {
-  const [trail, setTrail] = useState("");
   let { id } = useParams();
+
+  const [trail, setTrail] = useState([]);
+  // const [trailReviews, setTrailReviews] = useState([]);
 
   useEffect(() => {
     fetch(`/trails/${id}`)
       .then((res) => res.json())
       .then((trail) => setTrail(trail));
+    // .then((trail) => console.log(trail));
   }, []);
 
-  console.log(trail.trail_name);
+  function renderReviewCards(reviews) {
+    const reviewCard = reviews?.map((review) => {
+      return (
+        <ion-card key={review.id}>
+          <ion-card-header>
+            <ion-card-title>{review.name}</ion-card-title>
+          </ion-card-header>
+          <ion-card-subtitle>
+            <h4 className="card-subtitle">
+              Difficulty: {review.difficulty_rating}/10
+            </h4>
+          </ion-card-subtitle>
+          <ion-card-content>
+            <h3 className="comment-title">Comment:</h3> {review.comment}
+          </ion-card-content>
+        </ion-card>
+      );
+    });
+    return reviewCard;
+  }
 
-  return ` trail name is :${trail.trail_name}`;
+  return (
+    <IonPage className="trail-page">
+      <div className="page-container">
+        <IonContent>
+          <div
+            className="image-container"
+            style={{ backgroundImage: `url(${trail.image_url})` }}
+          >
+            <h1 className="trail-name">{trail.trail_name}</h1>
+            <div className="directions-icon">
+              <a href={`https://maps.google.com/?q=${trail.trail_name}+trail`}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="ionicon directions-icon"
+                  viewBox="0 0 512 512"
+                >
+                  <title>Navigate</title>
+                  <path
+                    d="M448 64L64 240.14h200a8 8 0 018 8V448z"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="32"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div className="description-container">
+            <div className="title-container">
+              <h2 className="section-title">Description</h2>
+            </div>
+
+            <div className="d-paragraph">
+              <p className="description">{trail.description}</p>
+            </div>
+            <div className="subtitle-container">
+              <h3 className="subtitle">
+                Difficulty: {trail.difficulty} • Roundtrip: {trail.roundtrip}{" "}
+                Miles
+              </h3>
+            </div>
+          </div>
+          <div className="Reviews-container">
+            <div className="title-container">
+              <div className="review-btn">
+                <ion-button className="review-btn">Write a Review</ion-button>
+              </div>
+
+              <h1 className="section-title">Reviews</h1>
+            </div>
+            <div className="review-card-container">
+              {renderReviewCards(trail.reviews)}
+            </div>
+          </div>
+        </IonContent>
+      </div>
+    </IonPage>
+  );
 }
 
 export default Trail_page;
