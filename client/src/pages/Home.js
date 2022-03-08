@@ -9,29 +9,17 @@ import {
 } from "@ionic/react";
 import "../css/home.css";
 
-import Trail_card from "../components/trail_card";
+function Home({ renderTrails, currentUser, currentHour, trails }) {
+  console.log(trails);
 
-function Home({
-  currentUser,
-  currentHour,
-  trails,
-  setSavedTrails,
-  savedTrails,
-  trailIds,
-}) {
-  function renderTrails(trails) {
-    const trail_cards = trails.map((trail) => (
-      <Trail_card
-        trailIds={trailIds}
-        savedTrails={savedTrails}
-        currentUser={currentUser}
-        trail={trail}
-        key={trail.id}
-        setSavedTrails={setSavedTrails}
-      />
-    ));
-    return trail_cards;
-  }
+  let popularTrails = trails?.filter((trail) => {
+    if (trail.popular) {
+      return trail;
+    }
+  });
+
+  console.log(popularTrails);
+
   function welcomeMsg(currentUser) {
     if (currentHour > 12 && currentHour < 18) {
       return `Good Afternoon ${
@@ -58,11 +46,14 @@ function Home({
   return (
     <IonPage className="home-page">
       <IonContent>
-        <div className="container">
-          <h1 className="welcome-msg">{welcomeMsg(currentUser)}</h1>
+        <div className="page-contents">
+          <div className="container">
+            <h1 className="welcome-msg">{welcomeMsg(currentUser)}</h1>
+          </div>
+          <IonTitle>Top Trails In The Great Smokey Mountains</IonTitle>
+
+          <div className="trail-container">{renderTrails(popularTrails)}</div>
         </div>
-        <IonTitle>Top Trails In The Great Smokey Mountains</IonTitle>
-        <div className="trail-container">{renderTrails(trails)}</div>
       </IonContent>
     </IonPage>
   );

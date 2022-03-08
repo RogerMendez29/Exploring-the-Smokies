@@ -16,6 +16,8 @@ function Trail_card({
     history.push(`/trail_page/${trail.id}`);
   }
 
+  
+
   useEffect(() => {
     if (trailIds.includes(trail.id)) {
       setisSaved(true);
@@ -101,7 +103,7 @@ function Trail_card({
           <ion-card-header>
             <div onClick={navToPage} className="">
               <div className="card-title">
-                <ion-card-title>{trail.trail_name}</ion-card-title>
+                <ion-card-title color="none">{trail.trail_name}</ion-card-title>
               </div>
             </div>
 

@@ -5,12 +5,12 @@
 .page-container {
   display: block;
   justify-content: center;
-  background-color: white;
   height: 100%;
-  width: 50%;
+  width: 65%;
 }
 
 .image-container {
+  margin-top: 65px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -18,14 +18,15 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
-  height: 500px;
+  height: 450px;
   width: 100%;
 }
 
 .description-container {
-  position: relative;
-  height: 200px;
+  align-items: center;
+  height: 250px;
   width: 100%;
+  border: 1px solid grey;
 }
 
 .trail-name {
@@ -41,7 +42,7 @@
   fill: rgba(8, 204, 90, 0.815);
   height: 50px;
   width: 50px;
-  margin: 25px;
+  margin: 10px;
   position: absolute;
   font-weight: bold;
   color: white;
@@ -55,7 +56,7 @@
   color: black;
 }
 a {
-  color: rgb(8, 8, 8) !important;
+  color: rgb(8, 8, 8);
 }
 
 .subtitle-container {
@@ -68,6 +69,7 @@ a {
 }
 .section-title {
   margin: 15px;
+  margin-top: 0;
   color: rgb(19, 18, 18) !important;
 }
 
@@ -86,17 +88,19 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
+  border:1px solid grey
+
 }
 
 .title-container {
   position: relative;
-  /* display: inline; */
   height: 50px;
-  margin: 5px;
-  background-color: grey;
+  background-color: rgb(175, 174, 174);
 }
 .review-btn {
   position: absolute;
-  right: 0
+  right: 0;
+}
 
+ion-item-divider {
 }

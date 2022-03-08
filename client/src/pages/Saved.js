@@ -10,7 +10,13 @@ import {
 } from "@ionic/react";
 import "../css/home.css";
 
-function Saved({ trails, currentUser, savedTrails, setSavedTrails, trailIds }) {
+function Saved({
+  trails,
+  currentUser,
+  savedTrails,
+  setSavedTrails,
+  trailIds,
+}) {
   function renderSavedTrails() {
     return trails.map((trail) =>
       trailIds.includes(trail.id) ? (
@@ -29,9 +35,11 @@ function Saved({ trails, currentUser, savedTrails, setSavedTrails, trailIds }) {
   return (
     <IonPage className="home-page">
       <IonContent>
+        <div className="page-contents">
         <div className="saved_container"></div>
         <IonTitle></IonTitle>
         <div className="trail-container">{renderSavedTrails()}</div>
+        </div>
       </IonContent>
     </IonPage>
   );

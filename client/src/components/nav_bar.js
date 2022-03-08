@@ -33,7 +33,7 @@ function NavBar({ logout }) {
     <IonHeader>
       <IonToolbar>
         <div className="nav-links" slot="start">
-          <NavLink to="/" activeClassName="active" className="nav-link">
+          <NavLink exact to="/" activeClassName="active" className="nav-link">
             Home
           </NavLink>
           <NavLink to="/saved" activeClassName="active" className="nav-link">
@@ -61,7 +61,7 @@ function NavBar({ logout }) {
         <IonPopover
           onDidPresent={initPopover}
           trigger="trigger-button"
-          triggerAction="hover"
+          // triggerAction="hover"
         >
           <IonContent>
             <IonList>

@@ -1,15 +1,26 @@
 import React, { useState } from "react";
-import { IonSearchbar } from "@ionic/react";
+import {
+  IonContent,
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonSearchbar,
+} from "@ionic/react";
 
 import "../css/explore.css";
 
-function Explore() {
+function Explore({ renderTrails, trails }) {
   return (
-    <IonSearchbar
-      placeholder="Search By Trail Name"
-      className="search-bar"
-      showCancelButton="always"
-    ></IonSearchbar>
+    <IonPage className="home-page">
+      <IonContent>
+        <div className="page-contents">
+          <IonSearchbar  className="search-bar"placeholder="Search by trail Name"  ></IonSearchbar>
+
+          <div className="trail-container">{renderTrails(trails)}</div>
+        </div>
+      </IonContent>
+    </IonPage>
   );
 }
 

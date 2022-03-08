@@ -7,6 +7,7 @@ import Explore from "../pages/Explore";
 import TrailPage from "../components/trail_page";
 import Profile from "../pages/Profile";
 import Reviews from "../pages/Reviews";
+import Trail_card from "../components/trail_card";
 
 function AuthApp({
   setCurrentUser,
@@ -20,6 +21,7 @@ function AuthApp({
   const [trails, setTrails] = useState([]);
 
   useEffect(() => {
+    
     let hours = new Date().getHours();
     setCurrentHour(hours);
     setLoggedIn(true);
@@ -42,12 +44,27 @@ function AuthApp({
     return trail.trail_id;
   });
 
+  function renderTrails(trails) {
+    const trail_cards = trails?.map((trail) => (
+      <Trail_card
+        trailIds={trailIds}
+        savedTrails={savedTrails}
+        currentUser={currentUser}
+        trail={trail}
+        key={trail.id}
+        setSavedTrails={setSavedTrails}
+      />
+    ));
+    return trail_cards;
+  }
+
   return (
     <div>
       <NavBar logout={handleLogOut} />
       <Switch>
         <Route path="/saved">
           <Saved
+            renderTrails={renderTrails}
             trailIds={trailIds}
             currentUser={currentUser}
             trails={trails}
@@ -56,7 +73,7 @@ function AuthApp({
           />
         </Route>
         <Route path="/explore">
-          <Explore />
+          <Explore renderTrails={renderTrails} trails={trails} />
         </Route>
         <Route path="/trail_page/:id">
           <TrailPage />
@@ -69,6 +86,7 @@ function AuthApp({
         </Route>
         <Route path="/">
           <Home
+            renderTrails={renderTrails}
             trailIds={trailIds}
             currentUser={currentUser}
             currentHour={currentHour}

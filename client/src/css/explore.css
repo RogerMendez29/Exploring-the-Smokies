@@ -2,3 +2,12 @@
   width: 25%;
   background-color: transparent !important;
 }
+
+
+ion-page{
+  top: 0
+}
+
+.search-bar{
+  width: 30%
+}

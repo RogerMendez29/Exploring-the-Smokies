@@ -1,0 +1,37 @@
+.profile-nav-link {
+  padding: 25px;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.profile-nav-link:hover {
+  color: green;
+}
+.profile-active {
+  color: green;
+  text-decoration: underline;
+}
+
+.profile-container {
+  width: 100%;
+  height: 300px;
+  border: 1px solid grey;
+}
+
+.trails-container {
+  width: 100%;
+  height: 600px;
+  border: 1px solid grey;
+}
+.profile-title-container {
+  width: 100%;
+  height: 45px;
+  background-color: grey;
+}
+
+.review-container {
+  height: 1000px;
+  width: 100%;
+  border: 1px solid grey;
+}
