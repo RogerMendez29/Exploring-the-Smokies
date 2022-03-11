@@ -1,0 +1,32 @@
+.review {
+  /* display: flex; */
+  /* justify-content: center; */
+
+  /* align-items: center; */
+  margin-top: 0px;
+  height: 800px;
+  width: 100%;
+}
+
+.review-card {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  /* margin: 10px; */
+  height: 300px;
+  width: 98%;
+}
+
+.review-form {
+  /* display: flex; */
+  justify-content: center;
+
+  text-align: center;
+  align-items: center;
+  height: 5px;
+  width: 100%;
+}
+
+.comment-box{
+    height: 100px;
+}

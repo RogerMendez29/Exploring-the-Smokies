@@ -38,19 +38,21 @@ function Profile() {
                 </div>
               </IonToolbar>
             </IonHeader>
-            <div className="profile-container">
-              <div className="profile-title-container">
-                <h2 className="section-title">Profile</h2>
+            <div className="page-data">
+              <div className="profile-container">
+                <div className="profile-title-container">
+                  <h2 className="section-title">Profile</h2>
+                </div>
               </div>
-            </div>
-            <div className="trails-container">
-              <div className="profile-title-container">
-                <h2 className="section-title">Saved Trails</h2>
+              <div className="trails-container">
+                <div className="profile-title-container">
+                  <h2 className="section-title">Saved Trails</h2>
+                </div>
               </div>
-            </div>
-            <div className="trails-container">
-              <div className="profile-title-container">
-                <h2 className="section-title">Completed Trails</h2>
+              <div className="trails-container">
+                <div className="profile-title-container">
+                  <h2 className="section-title">Completed Trails</h2>
+                </div>
               </div>
             </div>
           </div>

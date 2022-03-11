@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useIonModal } from "@ionic/react";
 import { useParams } from "react-router-dom";
 import "../css/trail_page.css";
+import ReviewForm from "./review_form";
 import {
   IonContent,
   IonHeader,
@@ -9,20 +11,28 @@ import {
   IonToolbar,
   IonItem,
   IonItemDivider,
+  IonModal,
+  IonInput,
+  IonTextarea,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonButton,
+  IonRange,
 } from "@ionic/react";
 
-function Trail_page() {
+function Trail_page({ currentUser }) {
   let { id } = useParams();
 
+
+  const [showReview, setShowReview] = useState(false);
   const [trail, setTrail] = useState([]);
-  // const [trailReviews, setTrailReviews] = useState([]);
 
   useEffect(() => {
     fetch(`/trails/${id}`)
       .then((res) => res.json())
       .then((trail) => setTrail(trail));
-    // .then((trail) => console.log(trail));
-  }, []);
+  }, [showReview]);
 
   function renderReviewCards(reviews) {
     const reviewCard = reviews?.map((review) => {
@@ -97,16 +107,33 @@ function Trail_page() {
             <div className="Reviews-container">
               <div className="title-container">
                 <div className="review-btn">
-                  <ion-button className="review-btn" color="success">
-                    Write a Review
+                  <ion-button
+                    onClick={() => setShowReview(!showReview)}
+                    className="review-btn"
+                    color="success"
+                  >
+                    {showReview ? "done" : "write A Review"}
                   </ion-button>
                 </div>
 
                 <h1 className="section-title">Reviews</h1>
               </div>
-              <div className="review-card-container">
-                {renderReviewCards(trail.reviews)}
-              </div>
+
+              {showReview ? (
+                <div className="review-card-container">
+                  <ReviewForm
+                  showReview={showReview}
+                  setShowReview={setShowReview}
+                    currentUser={currentUser}
+                    trail={trail}
+                  />
+                  {renderReviewCards(trail.reviews)}
+                </div>
+              ) : (
+                <div className="review-card-container">
+                  {renderReviewCards(trail.reviews)}
+                </div>
+              )}
             </div>
           </div>
         </IonContent>

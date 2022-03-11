@@ -80,7 +80,7 @@ function NavBar({ logout }) {
                   className="nav-link"
                   to="/reviews"
                 >
-                  Reviews
+                  My Reviews
                 </NavLink>
               </IonItem>
               <IonItem button id="logout-btn">

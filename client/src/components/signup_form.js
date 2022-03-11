@@ -45,7 +45,6 @@ function Signup({ setCurrentUser }) {
 
   return (
     <div className="signup-card">
-      {/* <Redirect to="/login" /> */}
       <IonCard class="signup-form">
         <form onSubmit={handleSubmit}>
           <IonCardHeader>

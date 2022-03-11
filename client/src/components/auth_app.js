@@ -17,13 +17,13 @@ function AuthApp({
   setLoggedIn,
 }) {
   const [currentHour, setCurrentHour] = useState("");
-
+  const [allReviews, setAllReviews] = useState([]);
   const [trails, setTrails] = useState([]);
 
   useEffect(() => {
-    
     let hours = new Date().getHours();
     setCurrentHour(hours);
+    setAllReviews(currentUser.reviews);
     setLoggedIn(true);
     fetch("/trails")
       .then((res) => res.json())
@@ -76,13 +76,13 @@ function AuthApp({
           <Explore renderTrails={renderTrails} trails={trails} />
         </Route>
         <Route path="/trail_page/:id">
-          <TrailPage />
+          <TrailPage currentUser={currentUser} />
         </Route>
         <Route path="/profile">
           <Profile />
         </Route>
         <Route path="/reviews">
-          <Reviews />
+          <Reviews allReviews={allReviews} currentUser={currentUser} />
         </Route>
         <Route path="/">
           <Home
