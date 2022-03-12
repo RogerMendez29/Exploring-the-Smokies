@@ -17,7 +17,6 @@ function Explore({ renderTrails, trails }) {
     return trail.trail_name.toLowerCase().includes(search.toLowerCase());
   });
 
-  console.log(searchResults);
 
   function handleSearch(event) {
     setSearch(event.detail.value);

@@ -79,7 +79,12 @@ function AuthApp({
           <TrailPage currentUser={currentUser} />
         </Route>
         <Route path="/profile">
-          <Profile currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          <Profile
+            trails={trails}
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+            renderTrails={renderTrails}
+          />
         </Route>
         <Route path="/reviews">
           <Reviews allReviews={allReviews} currentUser={currentUser} />

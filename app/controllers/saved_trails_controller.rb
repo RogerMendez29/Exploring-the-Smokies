@@ -20,6 +20,14 @@ class SavedTrailsController < ApplicationController
         saved_trail = SavedTrail.find(params[:id])
         saved_trail.destroy
     end
+
+    def update
+        saved_trail = SavedTrail.find(params[:id])
+        saved_trail.update(saved_trail_params)
+        render json: saved_trail
+        
+    end
+    
     
 
 

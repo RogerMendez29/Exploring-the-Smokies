@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import CloudinaryUpload from "../components/CloudinaryUpload";
 import ProfileForm from "../components/profile_form";
@@ -20,17 +20,14 @@ import {
   IonCardTitle,
 } from "@ionic/react";
 
-function Profile({ currentUser, setCurrentUser }) {
+function Profile({ currentUser, setCurrentUser, renderTrails, trails }) {
   const [editProfile, setEditProfile] = useState(false);
   const [userProfile, setUserProfile] = useState(currentUser.profile);
-  console.log(userProfile);
-  
 
   function handleUpload(result) {
     const body = {
       profile_picture_url: result.info.secure_url,
       profile_picture_thumbnail_url: result.info.eager[0].secure_url,
-      // cloudinary_public_id: "fill me in",
     };
     fetch("/me", {
       method: "PATCH",
@@ -45,10 +42,15 @@ function Profile({ currentUser, setCurrentUser }) {
       });
   }
 
-  console.log(userProfile.first_name);
-  console.log(userProfile.last_name);
-
-  
+  const SavedAndCompleted = currentUser.saved_trails.filter((trail) => {
+    return trail.completed === true;
+  });
+  const completedTrailIds = SavedAndCompleted.map((trail) => {
+    return trail.trail_id;
+  });
+  const trailsCompleted = trails.filter((trail) => {
+    return completedTrailIds.includes(trail.id);
+  });
 
   return (
     <IonPage className="trail-page">
@@ -106,8 +108,8 @@ function Profile({ currentUser, setCurrentUser }) {
                     {editProfile ? (
                       <div className="">
                         <ProfileForm
-                        userProfile={userProfile}
-                        setUserProfile={setUserProfile}
+                          userProfile={userProfile}
+                          setUserProfile={setUserProfile}
                           currentUser={currentUser}
                           setEditProfile={setEditProfile}
                         />
@@ -130,9 +132,7 @@ function Profile({ currentUser, setCurrentUser }) {
                           </IonCardSubtitle>
 
                           <IonCardSubtitle>
-                            {userProfile?.city
-                              ? `${userProfile.city}`
-                              : "City"}
+                            {userProfile?.city ? `${userProfile.city}` : "City"}
                             ,{" "}
                             {userProfile?.state
                               ? `${userProfile.state}`
@@ -152,14 +152,13 @@ function Profile({ currentUser, setCurrentUser }) {
                   </div>
                 </div>
               </div>
-              <div className="trails-container">
-                <div className="profile-title-container">
-                  <h2 className="section-title">Saved Trails</h2>
-                </div>
-              </div>
+
               <div className="trails-container">
                 <div className="profile-title-container">
                   <h2 className="section-title">Completed Trails</h2>
+                </div>
+                <div className="trail-container">
+                  {renderTrails(trailsCompleted)}
                 </div>
               </div>
             </div>

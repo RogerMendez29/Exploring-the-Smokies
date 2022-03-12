@@ -28,6 +28,23 @@ x .ionicon {
   height: 150px;
   width: 325px;
 }
+.check{
+  position: absolute;
+  height: 32px;
+  margin:5px;
+  top: 0;
+  left: 0;
+  fill: rgb(247, 247, 252);
+}
+
+.completedCheck{
+  position: absolute;
+  height: 32px;
+  margin:5px;
+  top: 0;
+  left: 0;
+  fill: rgb(41, 41, 252);
+}
 
 .bookmark {
   position: absolute;
