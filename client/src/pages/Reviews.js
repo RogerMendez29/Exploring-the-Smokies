@@ -13,8 +13,6 @@ import {
 } from "@ionic/react";
 
 function Reviews({ currentUser }) {
-  const [updatedDifficulty, setUpdatedDifficulty] = useState();
-  const [updatedComments, setUpdatedComments] = useState("");
   const [editableReview, setEditableReview] = useState(new Set());
   const [allReviews, setAllReviews] = useState([]);
 
@@ -38,10 +36,15 @@ function Reviews({ currentUser }) {
   function handleEdit(id) {
     if (editableReview.has(id)) {
       editableReview.delete(id);
+      // const foundIndex = editableReview.findIndex((index) => {
+      //   return index === id;
+      // });
+      // editableReview.splice(foundIndex, 1);
     } else {
       editableReview.add(id);
     }
     setEditableReview(new Set([...editableReview]));
+    // setEditableReview([...editableReview]);
   }
   function updatingReview(updatedReview) {
     const updatedReviews = allReviews.map((review) => {
@@ -51,10 +54,13 @@ function Reviews({ currentUser }) {
         return review;
       }
     });
-    setAllReviews(updatedReviews)
+    setAllReviews(updatedReviews);
   }
 
   function handleUpdate(e, id) {
+    const rangeValue = document.querySelector(`#range-${id}`).value;
+    const textAreaValue = document.querySelector(`#textArea-${id}`).value;
+
     e.preventDefault();
     fetch(`/reviews/${id}`, {
       method: "PATCH",
@@ -63,8 +69,8 @@ function Reviews({ currentUser }) {
       },
       credentials: "include",
       body: JSON.stringify({
-        comment: updatedComments,
-        difficulty_rating: updatedDifficulty,
+        comment: textAreaValue,
+        difficulty_rating: rangeValue,
       }),
     })
       .then((res) => res.json())
@@ -102,25 +108,22 @@ function Reviews({ currentUser }) {
             >
               <ion-item>
                 <ion-label>Difficulty:</ion-label>
-                <ion-label>{updatedDifficulty}</ion-label>
-
-
                 <IonRange
-                  onIonChange={(e) => setUpdatedDifficulty(e.target.value)}
+                  id={`range-${review.id}`}
                   min="0"
                   max="10"
                   step="1"
-                  value={updatedDifficulty}
+                  value={review.difficulty_rating}
                   snaps
                   color="danger"
+                  pin
                 ></IonRange>
               </ion-item>
               <ion-item>
                 <IonTextarea
-                  value={updatedComments}
+                  id={`textArea-${review.id}`}
                   className="comment-box"
                   placeholder="comments:"
-                  onIonChange={(e) => setUpdatedComments(e.target.value)}
                 ></IonTextarea>
               </ion-item>
               <IonButton type="submit">update</IonButton>

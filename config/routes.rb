@@ -1,5 +1,23 @@
 Rails.application.routes.draw do
   
+  
+    post 'uploads/prepare'
+    patch "/profiles", to: "profiles#update"
+
+  #   get "/me", to: "users#show"
+  # post "/signup", to: "users#create"
+
+  # post "/login", to: "sessions#create"
+  # delete "/logout", to: "sessions#destroy"
+
+  # resources :reviews
+  # resources :saved_trails, except: [:update]
+  # resources :trails, only: [:index,:show]
+  # resources :profiles, except: [:destroy]
+  # resources :users, except: [:update, :destroy]
+
+ 
+  
   resources :reviews
   resources :saved_trails, except: [:update]
   resources :trails, only: [:index,:show]

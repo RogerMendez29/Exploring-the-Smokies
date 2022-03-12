@@ -1,4 +1,5 @@
 class TrailsController < ApplicationController
+    skip_before_action :confirm_authentication
 
     def index 
         trail = Trail.all.order(:id)

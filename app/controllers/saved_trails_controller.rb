@@ -1,4 +1,5 @@
 class SavedTrailsController < ApplicationController
+    skip_before_action :confirm_authentication
 
     def index
         trails = SavedTrail.all 

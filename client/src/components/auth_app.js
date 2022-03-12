@@ -60,7 +60,7 @@ function AuthApp({
 
   return (
     <div>
-      <NavBar logout={handleLogOut} />
+      <NavBar logout={handleLogOut} currentUser={currentUser} />
       <Switch>
         <Route path="/saved">
           <Saved
@@ -79,7 +79,7 @@ function AuthApp({
           <TrailPage currentUser={currentUser} />
         </Route>
         <Route path="/profile">
-          <Profile />
+          <Profile currentUser={currentUser} setCurrentUser={setCurrentUser} />
         </Route>
         <Route path="/reviews">
           <Reviews allReviews={allReviews} currentUser={currentUser} />

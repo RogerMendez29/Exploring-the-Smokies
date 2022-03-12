@@ -10,7 +10,6 @@ import {
 import "../css/home.css";
 
 function Home({ renderTrails, currentUser, currentHour, trails }) {
-  console.log(trails);
 
   let popularTrails = trails?.filter((trail) => {
     if (trail.popular) {
@@ -18,7 +17,6 @@ function Home({ renderTrails, currentUser, currentHour, trails }) {
     }
   });
 
-  console.log(popularTrails);
 
   function welcomeMsg(currentUser) {
     if (currentHour > 12 && currentHour < 18) {
