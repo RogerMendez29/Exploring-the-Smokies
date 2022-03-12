@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :confirm_authentication, except: [:update]
+    skip_before_action :confirm_authentication
 
 
     def index
@@ -18,22 +18,9 @@ class UsersController < ApplicationController
         end
 
     end
-
-#   def update
-#     if current_user.update(update_user_params)
-#       render json: current_user, status: :ok
-#     else 
-#       render json: user.errors, status: :unprocessable_entity
-#     end
-#   end
-
-  
-
-
-  
-
     def create
         user = User.create(user_params)
+        user_profile = Profile.create(user_id: user.id)
         if user.valid?
             session[:user_id] = user.id
             render json: user, status: :ok
@@ -50,6 +37,8 @@ class UsersController < ApplicationController
         params.permit(:username, :password, :password_confirmation)
 
     end
+
+    
 
     
 

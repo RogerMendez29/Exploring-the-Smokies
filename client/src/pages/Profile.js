@@ -22,6 +22,9 @@ import {
 
 function Profile({ currentUser, setCurrentUser }) {
   const [editProfile, setEditProfile] = useState(false);
+  const [userProfile, setUserProfile] = useState(currentUser.profile);
+  console.log(userProfile);
+  
 
   function handleUpload(result) {
     const body = {
@@ -29,7 +32,7 @@ function Profile({ currentUser, setCurrentUser }) {
       profile_picture_thumbnail_url: result.info.eager[0].secure_url,
       // cloudinary_public_id: "fill me in",
     };
-    fetch("/profiles", {
+    fetch("/me", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -38,12 +41,14 @@ function Profile({ currentUser, setCurrentUser }) {
     })
       .then((res) => res.json())
       .then((user) => {
-        console.log(user);
         setCurrentUser(user);
       });
   }
 
-  console.log(editProfile);
+  console.log(userProfile.first_name);
+  console.log(userProfile.last_name);
+
+  
 
   return (
     <IonPage className="trail-page">
@@ -95,38 +100,42 @@ function Profile({ currentUser, setCurrentUser }) {
                       color="success"
                       onClick={() => setEditProfile(!editProfile)}
                     >
-                      {editProfile ? "Done" : "Update Profile"}
+                      {editProfile ? "View Profile" : "Update Profile"}
                     </ion-button>
 
                     {editProfile ? (
                       <div className="">
-                        <ProfileForm />
+                        <ProfileForm
+                        userProfile={userProfile}
+                        setUserProfile={setUserProfile}
+                          currentUser={currentUser}
+                          setEditProfile={setEditProfile}
+                        />
                       </div>
                     ) : (
                       <div className="">
                         <IonCardHeader>
                           <IonCardTitle>
-                            {currentUser.profile?.first_name
-                              ? `${currentUser.profile.first_name}`
-                              : "First"}
-                            {" & "}
-                            {currentUser.profile?.last_name
-                              ? `${currentUser.profile.last_name}`
+                            {userProfile?.first_name
+                              ? `${userProfile.first_name}`
+                              : "First"}{" "}
+                            {userProfile?.last_name
+                              ? `${userProfile.last_name}`
                               : "Last Name"}
                           </IonCardTitle>
                           <IonCardSubtitle>
-                            {currentUser.profile?.email
-                              ? ` email: ${currentUser.profile.email}`
+                            {userProfile?.email
+                              ? ` email: ${userProfile.email}`
                               : "Email"}
                           </IonCardSubtitle>
 
                           <IonCardSubtitle>
-                            {currentUser.profile?.city
-                              ? `${currentUser.profile.city}`
+                            {userProfile?.city
+                              ? `${userProfile.city}`
                               : "City"}
                             ,{" "}
-                            {currentUser.profile?.state
-                              ? `${currentUser.profile.city}`
+                            {userProfile?.state
+                              ? `${userProfile.state}`
                               : "State"}
                           </IonCardSubtitle>
                         </IonCardHeader>
@@ -134,8 +143,8 @@ function Profile({ currentUser, setCurrentUser }) {
                         <IonCardTitle>Bio</IonCardTitle>
 
                         <IonCardContent>
-                          {currentUser.profile?.bio
-                            ? currentUser.profile.bio
+                          {userProfile?.bio
+                            ? userProfile.bio
                             : "No bio available"}
                         </IonCardContent>
                       </div>

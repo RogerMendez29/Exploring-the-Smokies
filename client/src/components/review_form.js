@@ -12,14 +12,10 @@ import {
   IonTextarea,
 } from "@ionic/react";
 
-function ReviewForm({currentUser, trail, setShowReview, showReview}) {
-  console.log(currentUser);
-
-  
+function ReviewForm({ currentUser, trail, setShowReview, showReview }) {
 
   const [difficulty, setDifficulty] = useState(null);
   const [comment, setComment] = useState("");
-
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -37,10 +33,10 @@ function ReviewForm({currentUser, trail, setShowReview, showReview}) {
         difficulty_rating: difficulty,
         comment: comment,
       }),
-      }).then((res) => {
-        if (res.ok) {
-          setShowReview(false);
-        }
+    }).then((res) => {
+      if (res.ok) {
+        setShowReview(false);
+      }
     });
   }
 
@@ -54,7 +50,6 @@ function ReviewForm({currentUser, trail, setShowReview, showReview}) {
         <ion-item>
           <ion-label>Difficulty:</ion-label>
           <ion-label>{difficulty}</ion-label>
-
 
           <IonRange
             onIonChange={(e) => setDifficulty(e.target.value)}
