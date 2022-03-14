@@ -12,6 +12,9 @@ function Trail_card({
   const [isSaved, setisSaved] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
 
+  console.log(isCompleted);
+  
+
   let history = useHistory();
 
   function navToPage() {
@@ -90,7 +93,10 @@ function Trail_card({
         completed: true,
       }),
     });
-  }
+  }console.log(savedTrailIds);
+  
+
+
 
   return (
     <div className="container-card">
@@ -99,9 +105,8 @@ function Trail_card({
         {isSaved ? (
           <svg
             onClick={handleComplete}
-            // fill="black"
             xmlns="http://www.w3.org/2000/svg"
-            className={`ionicon ${isCompleted ? "completedCheck" : "check"}`}
+            className={`ionicon ${isCompleted || savedTrailIds[0]?.completed? "completedCheck" : "check"}`}
             viewBox="0 0 512 512"
           >
             <title>Completed Checkmark</title>
