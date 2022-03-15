@@ -42,7 +42,6 @@ function LoginForm({ setCurrentUser, setLoggedIn }) {
 
   return (
     <div className="login-card">
-      {/* <Redirect to="/" /> */}
 
       <IonCard class="login-form">
         <form onSubmit={handleSubmit}>
