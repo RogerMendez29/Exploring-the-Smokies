@@ -2,7 +2,7 @@
 
 ## Description
 
-This App was created to give users the ablity to track all of the trails from the Great Smoky Mountains in Tennessee. Users have the ability to bookmark a trail and also set them as completed. User are also given the ability to creat a review about a trail and in doing so they can advise other users on whether or not they should decide to hike that trail or not.
+This App was created to give users the ablity to track all of the trails from the Great Smoky Mountains in Tennessee. Users have the ability to bookmark a trail and also set them as completed. Users are also given the ability to create a review about a trail and in doing so they can advise other users on whether or not they should decide to hike that trail or not.
 
 ## Built Using
 
