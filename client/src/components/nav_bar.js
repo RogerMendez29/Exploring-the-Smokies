@@ -11,23 +11,12 @@ import {
   IonButton,
   IonList,
   IonItem,
-  IonLabel,
-  IonMenu,
-  IonPage,
-  IonMenuToggle,
-  IonNavLink,
 } from "@ionic/react";
 
 function NavBar({ logout, currentUser }) {
-  // console.log(currentUser);
-
   function profile_image() {
-    return currentUser.profile?.profile_picture_thumbnail_url? (
-      <img
-        src={currentUser.profile.profile_picture_thumbnail_url}
-        // alt={currentUser.username}
-        // className="rounded-full ml-auto"
-      />
+    return currentUser.profile?.profile_picture_thumbnail_url ? (
+      <img src={currentUser.profile.profile_picture_thumbnail_url} />
     ) : (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -50,6 +39,8 @@ function NavBar({ logout, currentUser }) {
     });
   }
 
+  console.log();
+
   return (
     <IonHeader>
       <IonToolbar>
@@ -63,6 +54,16 @@ function NavBar({ logout, currentUser }) {
           <NavLink to="/explore" activeClassName="active" className="nav-link">
             Explore
           </NavLink>
+
+          {currentUser.user_can_modify ? (
+            <NavLink
+              to="/create"
+              activeClassName="active"
+              className="nav-link"
+            >
+              Create
+            </NavLink>
+          ) : null}
         </div>
         <IonTitle>
           <NavLink to="/" className="app-title">

@@ -34,7 +34,6 @@ function CloudinaryUpload({
               body: JSON.stringify(body)
             })
               .then(res => res.json())
-            //   .then(data => console.log(data))
           }))
             .then((results) =>
               cb(results.length === 1 ? results[0] : results)

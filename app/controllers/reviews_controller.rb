@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-    skip_before_action :confirm_authentication
+
 
     def index
         review = Review.all
@@ -38,6 +38,8 @@ class ReviewsController < ApplicationController
     def review_params
         params.permit(:name, :comment, :difficulty_rating, :user_id, :trail_id)
     end
+
+   
     
     
     

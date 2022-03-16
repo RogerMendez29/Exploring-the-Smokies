@@ -1,5 +1,4 @@
 class ProfilesController < ApplicationController
-    skip_before_action :confirm_authentication, except: [:update]
 
 
     def index

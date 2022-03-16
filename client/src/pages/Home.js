@@ -11,6 +11,8 @@ import "../css/home.css";
 
 function Home({ renderTrails, currentUser, currentHour, trails }) {
 
+  
+
   let popularTrails = trails?.filter((trail) => {
     if (trail.popular) {
       return trail;

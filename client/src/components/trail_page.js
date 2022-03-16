@@ -23,7 +23,8 @@ import {
 
 function Trail_page({ currentUser }) {
   let { id } = useParams();
-
+  console.log(id);
+  
 
   const [showReview, setShowReview] = useState(false);
   const [trail, setTrail] = useState([]);
@@ -67,7 +68,7 @@ function Trail_page({ currentUser }) {
               <h1 className="trail-name">{trail.trail_name}</h1>
               <div className="directions-icon">
                 <a
-                  href={`https://maps.google.com/?q=${trail.trail_name}+trail`}
+                  href={`https://maps.google.com/?q=${trail.trail_name}+Great Smoky Mountain Trail`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -122,8 +123,8 @@ function Trail_page({ currentUser }) {
               {showReview ? (
                 <div className="review-card-container">
                   <ReviewForm
-                  showReview={showReview}
-                  setShowReview={setShowReview}
+                    showReview={showReview}
+                    setShowReview={setShowReview}
                     currentUser={currentUser}
                     trail={trail}
                   />

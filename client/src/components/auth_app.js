@@ -8,6 +8,8 @@ import TrailPage from "../components/trail_page";
 import Profile from "../pages/Profile";
 import Reviews from "../pages/Reviews";
 import Trail_card from "../components/trail_card";
+import Create from "../pages/Create";
+
 
 function AuthApp({
   setCurrentUser,
@@ -88,6 +90,9 @@ function AuthApp({
         </Route>
         <Route path="/reviews">
           <Reviews allReviews={allReviews} currentUser={currentUser} />
+        </Route>
+        <Route path="/create">
+          <Create />
         </Route>
         <Route path="/">
           <Home

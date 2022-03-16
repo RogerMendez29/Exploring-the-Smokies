@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    skip_before_action :confirm_authentication
+
+
 
 
     def index
@@ -37,6 +38,8 @@ class UsersController < ApplicationController
         params.permit(:username, :password, :password_confirmation)
 
     end
+
+    
 
     
 
