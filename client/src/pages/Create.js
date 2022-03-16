@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "../css/trail_form.css";
-
 import { IonContent, IonPage } from "@ionic/react";
-
 import TrailForm from "../components/trail_form";
 
 function Create() {

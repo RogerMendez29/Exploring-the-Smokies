@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../css/trail_form.css";
 import {
   IonInput,
-  IonCard,
   IonCardHeader,
   IonCardTitle,
   IonButton,

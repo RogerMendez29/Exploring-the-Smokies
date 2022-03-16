@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   IonContent,
   IonPage,
-  IonHeader,
-  IonToolbar,
   IonTitle,
-  IonSearchbar,
 } from "@ionic/react";
 import "../css/home.css";
 

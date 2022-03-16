@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../css/review_form.css";
 import {
-  IonInput,
   IonCard,
   IonCardHeader,
   IonCardTitle,
   IonButton,
-  IonItem,
-  IonLabel,
   IonRange,
   IonTextarea,
 } from "@ionic/react";

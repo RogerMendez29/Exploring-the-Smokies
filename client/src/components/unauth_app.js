@@ -4,19 +4,6 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 
 function UnauthApp({ setCurrentUser, setLoggedIn, loggedIn }) {
-
-  // function redirect() {
-  //   if (loggedIn) {
-  //     console.log(loggedIn);
-
-  //     return <div></div>;
-  //   } else if (loggedIn === false) {
-  //     console.log(loggedIn);
-
-  // return <Redirect to="/" />;
-  //   }
-  // }
-
   return (
     <div>
       <Switch>

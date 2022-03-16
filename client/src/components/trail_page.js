@@ -5,20 +5,8 @@ import "../css/trail_page.css";
 import ReviewForm from "./review_form";
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
-  IonItem,
   IonItemDivider,
-  IonModal,
-  IonInput,
-  IonTextarea,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonButton,
-  IonRange,
 } from "@ionic/react";
 
 function Trail_page({ currentUser }) {

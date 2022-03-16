@@ -7,7 +7,7 @@ class UserSerializer < ActiveModel::Serializer
 
 
   def user_can_modify
-    current_user.admin 
+    current_user.admin?
 
   end
 end

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import ReviewForm from "../components/review_form";
 import "../css/profile.css";
 import {
   IonContent,

@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import "../css/profile_form.css";
 import {
   IonInput,
-  IonCard,
   IonCardHeader,
   IonCardTitle,
   IonButton,
   IonItem,
   IonLabel,
-  IonRange,
   IonTextarea,
 } from "@ionic/react";
 

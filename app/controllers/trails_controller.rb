@@ -1,5 +1,6 @@
 class TrailsController < ApplicationController
 
+    before_action :authorize_user, only:[:create]
 
 
     def index 
