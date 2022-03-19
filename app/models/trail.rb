@@ -1,5 +1,7 @@
 class Trail < ApplicationRecord
     has_many :saved_trails
+    has_many :completed_trails
+
     has_many :reviews
 
     validates :trail_name, presence: true,  uniqueness: true

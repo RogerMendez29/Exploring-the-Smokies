@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
   
   
-    post 'uploads/prepare'
-    patch "/me", to: "profiles#upload"
-
+    
   
 
- 
-  
   resources :reviews
-  resources :saved_trails
   resources :trails
+
+  resources :saved_trails
+  resources :completed_trails
+
   resources :profiles, except: [:destroy]
   resources :users, except: [:update,:destroy]
 
@@ -19,6 +18,10 @@ Rails.application.routes.draw do
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+
+  post 'uploads/prepare'
+  patch "/me", to: "profiles#upload"
+
 
 
 
