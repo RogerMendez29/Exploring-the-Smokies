@@ -17,7 +17,12 @@ class TrailsController < ApplicationController
 
     def create
         trail= Trail.create(trail_params)
+        if trail.valid?
        render json: trail, status: :ok
+       else 
+        render json: {error: trail.errors}, status: :unprocessable_entity
+        end
+        
 
     end
 

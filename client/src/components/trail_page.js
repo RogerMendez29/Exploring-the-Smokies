@@ -17,7 +17,6 @@ function Trail_page({ currentUser }) {
     fetch(`/trails/${id}`)
       .then((res) => res.json())
       .then((trail) => setTrail(trail));
-    // .catch((error) => console.log("hey"));
   }, [showReview]);
 
   function renderReviewCards(reviews) {
@@ -94,14 +93,14 @@ function Trail_page({ currentUser }) {
 
               {edit ? <TrailForm trail={trail} setTrail={setTrail}/> : null}
               <div className="d-paragraph">
-                <p className="description">{trail.description}</p>
+                <p className="description">{edit?null:trail.description}</p>
               </div>
               <IonItemDivider></IonItemDivider>
 
               <div className="subtitle-container">
                 <h3 className="subtitle">
-                  Difficulty: {trail.difficulty} • Roundtrip: {trail.roundtrip}{" "}
-                  Miles
+                  {edit?null:`Difficulty: ${trail.difficulty} • Roundtrip: ${trail.roundtrip}
+                  Miles`}
                 </h3>
               </div>
             </div>

@@ -48,9 +48,11 @@ function CloudinaryUpload({
   }, [preset, handleUpload]);
 
   return (
+    <div className="btn-container">
     <IonButton  id="upload">
       Upload
     </IonButton>
+    </div>
   );
 }
 

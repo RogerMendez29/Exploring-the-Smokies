@@ -1,10 +1,37 @@
 .trail-form{
     text-align: center;
+    height: 100%;
+
+
+}
+.edit-form{
+    text-align: center;
+}
+
+.create-form{
+    margin-top: 100px;
+    width: 50%;
+    height: 100%;
+
+
+}
+.create-trail-container{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+}
+
+.page-contents{
+    height: 100%;
 }
 
 
-.content::part(background){
-    
-    background-color:aqua;
-    /* --background:black */
+.content{
+    --background:black
 }
+
+textarea{
+    height: 150px !important;
+}
+
