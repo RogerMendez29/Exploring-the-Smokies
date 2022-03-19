@@ -121,6 +121,7 @@ function Reviews({ currentUser }) {
               <ion-item>
                 <IonTextarea
                   id={`textArea-${review.id}`}
+                  value={review.comment}
                   className="comment-box"
                   placeholder="comments:"
                 ></IonTextarea>

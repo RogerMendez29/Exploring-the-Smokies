@@ -21,6 +21,19 @@ class TrailsController < ApplicationController
 
     end
 
+    def update
+        trail = Trail.find(params[:id])
+        trail.update(trail_params)
+        render json: trail
+        
+    end
+    
+
+    def destroy
+        trail= Trail.find(params[:id])
+        trail.destroy
+    end
+
     private
 
 

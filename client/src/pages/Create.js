@@ -3,7 +3,7 @@ import "../css/trail_form.css";
 import { IonContent, IonPage } from "@ionic/react";
 import TrailForm from "../components/trail_form";
 
-function Create() {
+function Create({setTrails, trails}) {
 
     
   return (
@@ -11,7 +11,7 @@ function Create() {
       <IonContent className="content">
         <div className="page-contents">
           <div className="trail-form">
-            <TrailForm />
+            <TrailForm  setTrails={setTrails} trails={trails}/>
           </div>
         </div>
       </IonContent>

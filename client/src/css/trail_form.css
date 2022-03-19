@@ -3,4 +3,8 @@
 }
 
 
-
+.content::part(background){
+    
+    background-color:aqua;
+    /* --background:black */
+}

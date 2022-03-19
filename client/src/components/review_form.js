@@ -45,8 +45,7 @@ function ReviewForm({ currentUser, trail, setShowReview, showReview }) {
         </IonCardHeader>
 
         <ion-item>
-          <ion-label>Difficulty:</ion-label>
-          <ion-label>{difficulty}</ion-label>
+          <ion-label className="difficulty-label">Difficulty:</ion-label>
 
           <IonRange
             onIonChange={(e) => setDifficulty(e.target.value)}
@@ -55,7 +54,8 @@ function ReviewForm({ currentUser, trail, setShowReview, showReview }) {
             step="1"
             value={difficulty}
             snaps
-            color="success"
+            color="danger"
+            pin
           ></IonRange>
         </ion-item>
         <ion-item>

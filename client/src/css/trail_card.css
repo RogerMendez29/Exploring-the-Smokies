@@ -73,3 +73,15 @@ x .ionicon {
 .card-title {
   cursor: pointer;
 }
+
+.delete-btn{
+  position: absolute;
+  height: 32px;
+  margin:5px;
+  right: 0;
+  bottom: 0;
+
+}
+.header-container {
+  width: 250px;
+}

@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import {
   IonContent,
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
   IonSearchbar,
 } from "@ionic/react";
 

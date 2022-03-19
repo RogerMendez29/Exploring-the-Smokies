@@ -11,48 +11,74 @@ import {
   IonTextarea,
 } from "@ionic/react";
 
-function TrailForm({}) {
-  const [trailName, setTrailName] = useState("");
+function TrailForm({ setTrails, setTrail, trails, trail }) {
+  
+  const [trailName, setTrailName] = useState(trail?trail.trail_name:"");
   const [features, setFeatures] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [roundtrip, setRoundTrip] = useState();
   const [elevation, setElevation] = useState();
   const [difficulty, setDifficulty] = useState();
   const [popular, setPopular] = useState(false);
-
   const [description, setDescription] = useState("");
 
+  console.log(trail);
 
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    
-
-    fetch("trails", {
-      method: "Post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        trail_name: trailName,
-        features: features,
-        image_url: imageUrl,
-        roundtrip: roundtrip,
-        elevation_gain: elevation,
-        difficulty: difficulty,
-        popular: popular,
-        description: description,
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        console.log("Success");
-      }
-    });
+    if (trail) {
+      fetch(`/trails/${trail.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          trail_name: trailName,
+          features: features,
+          image_url: imageUrl,
+          roundtrip: roundtrip,
+          elevation_gain: elevation,
+          difficulty: difficulty,
+          popular: popular,
+          description: description,
+        }),
+      }).then(res=> {
+        if (res.ok) {
+          res.json().then(updatedTrail => {
+            setTrail(updatedTrail)
+            
+          })
+        
+          
+          
+        }
+      })
+    } else {
+      fetch("/trails", {
+        method: "Post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          trail_name: trailName,
+          features: features,
+          image_url: imageUrl,
+          roundtrip: roundtrip,
+          elevation_gain: elevation,
+          difficulty: difficulty,
+          popular: popular,
+          description: description,
+        }),
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((trail) => setTrails([...trails, trail]));
+        }
+      });
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} className="trail-form">
       <IonCardHeader>
-        <IonCardTitle>Create a Trail</IonCardTitle>
+        <IonCardTitle>{trail?"Update Trail":"Create A Trail"}</IonCardTitle>
       </IonCardHeader>
 
       <IonItem>

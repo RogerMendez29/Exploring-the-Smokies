@@ -50,6 +50,7 @@ function App() {
   if (!loading) {
     return <div></div>;
   }
+
   return (
     <BrowserRouter>
       {currentUser ? (

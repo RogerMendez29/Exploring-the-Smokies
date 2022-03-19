@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import "../css/trail_card.css";
+import { IonButton } from "@ionic/react";
 
 function Trail_card({
+  allSetTrails,
+  allTrails,
   trail,
   currentUser,
   savedTrails,
@@ -29,8 +32,6 @@ function Trail_card({
   );
 
   function handleBookmark() {
-    console.log(savedTrailIds);
-
     if (trailIds.includes(trail.id)) {
       fetch(`/saved_trails/${savedTrailIds[0]?.id}`, {
         method: "DELETE",
@@ -90,9 +91,36 @@ function Trail_card({
     });
   }
 
+  function handleDelete() {
+
+    fetch(`/trails/${trail.id}`, {
+      method: "DELETE",
+      credentials: "include",
+    }).then((res) => {
+      if (res.ok) {
+        const updatedTrails = allTrails.filter((oldTrail) => {
+          return oldTrail.id !== trail.id;
+        })
+      allSetTrails(updatedTrails)
+
+      }
+
+    });
+  }
+
   return (
     <div className="container-card">
       <ion-card className="trail-card">
+        {currentUser.user_can_modify ? (
+          <IonButton
+            onclick={handleDelete}
+            color="danger"
+            className="delete-btn "
+          >
+            Delete
+          </IonButton>
+        ) : null}
+
         <img className="trail-image" src={trail.image_url} />
         {isSaved ? (
           <svg

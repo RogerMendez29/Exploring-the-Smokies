@@ -19,6 +19,8 @@ function Profile({ currentUser, setCurrentUser, renderTrails, trails }) {
   const [editProfile, setEditProfile] = useState(false);
   const [userProfile, setUserProfile] = useState(currentUser.profile);
 
+  
+
   function handleUpload(result) {
     const body = {
       profile_picture_url: result.info.secure_url,

@@ -3,24 +3,21 @@ import { useIonModal } from "@ionic/react";
 import { useParams } from "react-router-dom";
 import "../css/trail_page.css";
 import ReviewForm from "./review_form";
-import {
-  IonContent,
-  IonPage,
-  IonItemDivider,
-} from "@ionic/react";
+import { IonContent, IonPage, IonItemDivider, IonButton } from "@ionic/react";
+import TrailForm from "./trail_form";
 
 function Trail_page({ currentUser }) {
   let { id } = useParams();
-  console.log(id);
-  
 
   const [showReview, setShowReview] = useState(false);
   const [trail, setTrail] = useState([]);
+  const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     fetch(`/trails/${id}`)
       .then((res) => res.json())
       .then((trail) => setTrail(trail));
+    // .catch((error) => console.log("hey"));
   }, [showReview]);
 
   function renderReviewCards(reviews) {
@@ -51,7 +48,11 @@ function Trail_page({ currentUser }) {
           <div className="page-contents">
             <div
               className="image-container"
-              style={{ backgroundImage: `url(${trail.image_url})` }}
+              style={
+                trail.image_url
+                  ? { backgroundImage: `url(${trail.image_url})` }
+                  : null
+              }
             >
               <h1 className="trail-name">{trail.trail_name}</h1>
               <div className="directions-icon">
@@ -79,8 +80,19 @@ function Trail_page({ currentUser }) {
             <div className="description-container">
               <div className="title-container">
                 <h2 className="section-title">Description</h2>
+
+                {currentUser.user_can_modify ? (
+                  <IonButton
+                    onClick={() => setEdit(!edit)}
+                    className="edit-btn"
+                    color="success"
+                  >
+                    {edit ? "done" : "Make an Edit"}
+                  </IonButton>
+                ) : null}
               </div>
 
+              {edit ? <TrailForm trail={trail} setTrail={setTrail}/> : null}
               <div className="d-paragraph">
                 <p className="description">{trail.description}</p>
               </div>
@@ -96,13 +108,13 @@ function Trail_page({ currentUser }) {
             <div className="Reviews-container">
               <div className="title-container">
                 <div className="review-btn">
-                  <ion-button
+                  <IonButton
                     onClick={() => setShowReview(!showReview)}
                     className="review-btn"
                     color="success"
                   >
                     {showReview ? "done" : "write A Review"}
-                  </ion-button>
+                  </IonButton>
                 </div>
 
                 <h1 className="section-title">Reviews</h1>

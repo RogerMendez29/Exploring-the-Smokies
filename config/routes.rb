@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   resources :reviews
   resources :saved_trails
-  resources :trails, except: [:update, :destroy]
+  resources :trails
   resources :profiles, except: [:destroy]
   resources :users, except: [:update,:destroy]
 

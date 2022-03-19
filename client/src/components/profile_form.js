@@ -26,7 +26,7 @@ function ProfileForm({
   function handleSubmit(event) {
     event.preventDefault();
 
-    fetch(`profiles/${currentUser.profile.id}`, {
+    fetch(`/profiles/${currentUser.profile.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

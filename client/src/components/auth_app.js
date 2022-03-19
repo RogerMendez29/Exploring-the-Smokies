@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect, useHistory } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import NavBar from "./nav_bar";
 import Home from "../pages/Home";
@@ -9,7 +9,6 @@ import Profile from "../pages/Profile";
 import Reviews from "../pages/Reviews";
 import Trail_card from "../components/trail_card";
 import Create from "../pages/Create";
-
 
 function AuthApp({
   setCurrentUser,
@@ -42,13 +41,16 @@ function AuthApp({
       }
     });
   }
-  let trailIds = savedTrails.map((trail) => {
+  const trailIds = savedTrails.map((trail) => {
     return trail.trail_id;
   });
 
   function renderTrails(trails) {
     const trail_cards = trails?.map((trail) => (
       <Trail_card
+      allSetTrails={setTrails}
+        allTrails={trails}
+        setAllTrailIds={setTrails}
         trailIds={trailIds}
         savedTrails={savedTrails}
         currentUser={currentUser}
@@ -92,7 +94,7 @@ function AuthApp({
           <Reviews allReviews={allReviews} currentUser={currentUser} />
         </Route>
         <Route path="/create">
-          <Create />
+          <Create trails={trails} setTrails={setTrails} />
         </Route>
         <Route path="/">
           <Home
