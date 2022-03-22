@@ -28,10 +28,17 @@
 
 
 .content{
-    --background:black
+    --background:#141414
 }
 
 textarea{
     height: 150px !important;
 }
 
+.label-on{
+    color: green;
+}
+.label-off{
+    display: none 
+
+}

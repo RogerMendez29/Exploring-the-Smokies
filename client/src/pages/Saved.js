@@ -3,10 +3,7 @@ import Trail_card from "../components/trail_card";
 import {
   IonContent,
   IonPage,
-  IonHeader,
-  IonToolbar,
   IonTitle,
-  IonSearchbar,
 } from "@ionic/react";
 import "../css/home.css";
 
@@ -15,13 +12,20 @@ function Saved({
   currentUser,
   savedTrails,
   setSavedTrails,
-  trailIds,
+  savedTrailIds,
+  completedTrailIds,
+  completedTrails,
+  setCompletedTrails
 }) {
+  
   function renderSavedTrails() {
     return trails.map((trail) =>
-      trailIds.includes(trail.id) ? (
+      savedTrailIds?.includes(trail.id) ? (
         <Trail_card
-          trailIds={trailIds}
+         setCompletedTrails={setCompletedTrails}
+         completedTrails={completedTrails}
+         completedTrailIds={completedTrailIds}
+          savedTrailIds={savedTrailIds}
           savedTrails={savedTrails}
           setSavedTrails={setSavedTrails}
           currentUser={currentUser}
@@ -31,7 +35,6 @@ function Saved({
       ) : null
     );
   }
-
   return (
     <IonPage className="home-page">
       <IonContent>

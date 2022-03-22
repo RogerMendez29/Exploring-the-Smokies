@@ -29,8 +29,8 @@ setupIonicReact();
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [savedTrails, setSavedTrails] = useState([]);
+  const [completedTrails, setCompletedTrails] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -41,35 +41,42 @@ function App() {
         res.json().then((user) => {
           setCurrentUser(user);
           setSavedTrails(user.saved_trails);
-        });
+          setCompletedTrails(user.completed_trails);
+          setLoading(true);
+        })
       }
+      else{
       setLoading(true);
+
+      }
     });
   }, []);
 
   if (!loading) {
     return <div></div>;
+  } else {
+    return (
+      <BrowserRouter>
+        {currentUser ? (
+          <AuthApp
+            completedTrails={completedTrails}
+            setCompletedTrails={setCompletedTrails}
+            setLoggedIn={setLoggedIn}
+            setCurrentUser={setCurrentUser}
+            currentUser={currentUser}
+            savedTrails={savedTrails}
+            setSavedTrails={setSavedTrails}
+          />
+        ) : (
+          <UnauthApp
+            setCurrentUser={setCurrentUser}
+            setLoggedIn={setLoggedIn}
+            loggedIn={loggedIn}
+          />
+        )}
+      </BrowserRouter>
+    );
   }
-
-  return (
-    <BrowserRouter>
-      {currentUser ? (
-        <AuthApp
-          setLoggedIn={setLoggedIn}
-          setCurrentUser={setCurrentUser}
-          currentUser={currentUser}
-          savedTrails={savedTrails}
-          setSavedTrails={setSavedTrails}
-        />
-      ) : (
-        <UnauthApp
-          setCurrentUser={setCurrentUser}
-          setLoggedIn={setLoggedIn}
-          loggedIn={loggedIn}
-        />
-      )}
-    </BrowserRouter>
-  );
 }
 
 export default App;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useIonModal } from "@ionic/react";
 import { useParams } from "react-router-dom";
 import "../css/trail_page.css";
 import ReviewForm from "./review_form";
@@ -91,15 +90,17 @@ function Trail_page({ currentUser }) {
                 ) : null}
               </div>
 
-              {edit ? <TrailForm trail={trail} setTrail={setTrail}/> : null}
+              {edit ? <TrailForm trail={trail} setTrail={setTrail} /> : null}
               <div className="d-paragraph">
-                <p className="description">{edit?null:trail.description}</p>
+                <p className="description">{edit ? null : trail.description}</p>
               </div>
               <IonItemDivider></IonItemDivider>
 
               <div className="subtitle-container">
                 <h3 className="subtitle">
-                  {edit?null:`Difficulty: ${trail.difficulty} • Roundtrip: ${trail.roundtrip}
+                  {edit
+                    ? null
+                    : `Difficulty: ${trail.difficulty} • Roundtrip: ${trail.roundtrip}
                   Miles`}
                 </h3>
               </div>
@@ -122,7 +123,6 @@ function Trail_page({ currentUser }) {
               {showReview ? (
                 <div className="review-card-container">
                   <ReviewForm
-                    showReview={showReview}
                     setShowReview={setShowReview}
                     currentUser={currentUser}
                     trail={trail}

@@ -15,16 +15,14 @@ function AuthApp({
   currentUser,
   savedTrails,
   setSavedTrails,
+  completedTrails,
+  setCompletedTrails,
   setLoggedIn,
 }) {
-  const [currentHour, setCurrentHour] = useState("");
-  const [allReviews, setAllReviews] = useState([]);
   const [trails, setTrails] = useState([]);
 
+
   useEffect(() => {
-    let hours = new Date().getHours();
-    setCurrentHour(hours);
-    setAllReviews(currentUser.reviews);
     setLoggedIn(true);
     fetch("/trails")
       .then((res) => res.json())
@@ -41,17 +39,24 @@ function AuthApp({
       }
     });
   }
-  const trailIds = savedTrails.map((trail) => {
+
+  const savedTrailIds = savedTrails.map((trail) => {
+    return trail.trail_id;
+  });
+  const completedTrailIds = completedTrails.map((trail) => {
     return trail.trail_id;
   });
 
   function renderTrails(trails) {
     const trail_cards = trails?.map((trail) => (
       <Trail_card
-      allSetTrails={setTrails}
+        completedTrailIds={completedTrailIds}
+        setCompletedTrails={setCompletedTrails}
+        completedTrails={completedTrails}
+        allSetTrails={setTrails}
         allTrails={trails}
         setAllTrailIds={setTrails}
-        trailIds={trailIds}
+        savedTrailIds={savedTrailIds}
         savedTrails={savedTrails}
         currentUser={currentUser}
         trail={trail}
@@ -61,19 +66,20 @@ function AuthApp({
     ));
     return trail_cards;
   }
-
   return (
     <div>
       <NavBar logout={handleLogOut} currentUser={currentUser} />
       <Switch>
         <Route path="/saved">
           <Saved
-            renderTrails={renderTrails}
-            trailIds={trailIds}
+            savedTrailIds={savedTrailIds}
             currentUser={currentUser}
             trails={trails}
             setSavedTrails={setSavedTrails}
             savedTrails={savedTrails}
+            completedTrailIds={completedTrailIds}
+            setCompletedTrails={setCompletedTrails}
+            completedTrails={completedTrails}
           />
         </Route>
         <Route path="/explore">
@@ -84,27 +90,27 @@ function AuthApp({
         </Route>
         <Route path="/profile">
           <Profile
+            setCompletedTrails={setCompletedTrails}
+            completedTrailIds={completedTrailIds}
+            completedTrails={completedTrails}
             trails={trails}
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
-            renderTrails={renderTrails}
           />
         </Route>
         <Route path="/reviews">
-          <Reviews allReviews={allReviews} currentUser={currentUser} />
+          <Reviews currentUser={currentUser} />
         </Route>
+
         <Route path="/create">
           <Create trails={trails} setTrails={setTrails} />
         </Route>
+
         <Route path="/">
           <Home
             renderTrails={renderTrails}
-            trailIds={trailIds}
             currentUser={currentUser}
-            currentHour={currentHour}
             trails={trails}
-            setSavedTrails={setSavedTrails}
-            savedTrails={savedTrails}
           />
         </Route>
       </Switch>

@@ -6,7 +6,13 @@ class SavedTrailsController < ApplicationController
     end
     def create 
         saved_trail = SavedTrail.create(saved_trail_params)
+        if saved_trail.valid?
+
         render json: saved_trail, status: :created
+        else
+            render json: {errors: saved_trail.errors}, status: :unprocessable_entity
+
+        end
     end
 
     def destroy
@@ -23,6 +29,6 @@ class SavedTrailsController < ApplicationController
     private 
 
     def saved_trail_params
-        params.permit(:user_id, :trail_id, :completed)
+        params.permit(:user_id, :trail_id)
     end
 end

@@ -10,7 +10,7 @@ import {
   IonRange,
   IonTextarea,
   IonSelect,
-  IonSelectOption
+  IonSelectOption,
 } from "@ionic/react";
 
 function TrailForm({ setTrails, setTrail, trails, trail }) {
@@ -21,13 +21,13 @@ function TrailForm({ setTrails, setTrail, trails, trail }) {
   const [elevation, setElevation] = useState();
   const [difficulty, setDifficulty] = useState(trail ? trail.difficulty : "");
   const [popular, setPopular] = useState(false);
-  const [description, setDescription] = useState(trail ? trail.description : "");
-
-  console.log(trail);
+  const [description, setDescription] = useState(
+    trail ? trail.description : ""
+  );
+  const [success, setSuccess] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
-
     if (trail) {
       fetch(`/trails/${trail.id}`, {
         method: "PATCH",
@@ -44,6 +44,10 @@ function TrailForm({ setTrails, setTrail, trails, trail }) {
         }),
       }).then((res) => {
         if (res.ok) {
+          setSuccess(true);
+          setTimeout(function () {
+            setSuccess(false);
+          }, 2000); 
           res.json().then((updatedTrail) => {
             setTrail(updatedTrail);
           });
@@ -65,15 +69,22 @@ function TrailForm({ setTrails, setTrail, trails, trail }) {
         }),
       }).then((res) => {
         if (res.ok) {
+          setSuccess(true);
+          setTimeout(function () {
+            setSuccess(false);
+          }, 2000);
+
           res.json().then((trail) => setTrails([...trails, trail]));
         }
       });
     }
   }
-
   return (
-    <div className={trail?"":"create-trail-container"}>
-      <form onSubmit={handleSubmit} className={trail?"edit-form":"create-form"}>
+    <div className={trail ? "" : "create-trail-container"}>
+      <form
+        onSubmit={handleSubmit}
+        className={trail ? "edit-form" : "create-form"}
+      >
         {trail ? null : (
           <IonCardHeader color="light">
             <IonCardTitle>
@@ -110,10 +121,16 @@ function TrailForm({ setTrails, setTrail, trails, trail }) {
             placeholder="Elevation Gain"
             value={elevation}
           ></IonInput>
-          <IonSelect value={popular} okText="Okay" cancelText="Dismiss"  placeholder="Popular?" onIonChange={e => setPopular(e.detail.value)}>
-              <IonSelectOption value="true">true</IonSelectOption>
-              <IonSelectOption value="false">false</IonSelectOption>
-            </IonSelect>
+          <IonSelect
+            value={popular}
+            okText="Okay"
+            cancelText="Dismiss"
+            placeholder="Popular?"
+            onIonChange={(e) => setPopular(e.detail.value)}
+          >
+            <IonSelectOption value="true">true</IonSelectOption>
+            <IonSelectOption value="false">false</IonSelectOption>
+          </IonSelect>
         </IonItem>
         <ion-item>
           <ion-label>Difficulty:</ion-label>
@@ -128,7 +145,6 @@ function TrailForm({ setTrails, setTrail, trails, trail }) {
             pin
           ></IonRange>
         </ion-item>
-
         <IonItem>
           <IonTextarea
             onIonChange={(e) => setDescription(e.target.value)}
@@ -138,12 +154,12 @@ function TrailForm({ setTrails, setTrail, trails, trail }) {
           ></IonTextarea>
         </IonItem>
 
-        <IonButton type="submit" color="success" className="">
+        <IonButton type="submit" color="primary" className="">
           Save
         </IonButton>
+        <div className={success ? "label-on" : "label-off"}>Success!</div>
       </form>
     </div>
   );
 }
-
 export default TrailForm;

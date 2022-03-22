@@ -9,9 +9,11 @@ import {
   IonTextarea,
 } from "@ionic/react";
 
-function ReviewForm({ currentUser, trail, setShowReview, showReview }) {
+function ReviewForm({ currentUser, trail, setShowReview}) {
 
-  const [difficulty, setDifficulty] = useState(null);
+  
+
+  const [difficulty, setDifficulty] = useState();
   const [comment, setComment] = useState("");
 
   function handleSubmit(e) {

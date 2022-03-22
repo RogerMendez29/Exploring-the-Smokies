@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import {
-  IonContent,
-  IonPage,
-  IonTitle,
-} from "@ionic/react";
+import { IonContent, IonPage, IonTitle } from "@ionic/react";
 import "../css/home.css";
 
-function Home({ renderTrails, currentUser, currentHour, trails }) {
+function Home({ renderTrails, currentUser, trails }) {
+  const [currentHour, setCurrentHour] = useState("");
 
-  
+  useEffect(() => {
+    let hours = new Date().getHours();
+    setCurrentHour(hours);
+  });
 
   let popularTrails = trails?.filter((trail) => {
     if (trail.popular) {
       return trail;
     }
   });
-
 
   function welcomeMsg(currentUser) {
     if (currentHour > 12 && currentHour < 18) {

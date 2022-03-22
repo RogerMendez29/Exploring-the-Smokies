@@ -15,6 +15,8 @@ import {
 function LoginForm({ setCurrentUser, setLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState();
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,12 +31,11 @@ function LoginForm({ setCurrentUser, setLoggedIn }) {
         res.json().then((user) => {
           setCurrentUser(user);
           setLoggedIn(true);
-          
         });
       } else {
         res.json().then((errors) => {
-          console.error(errors);
           setLoggedIn(false);
+          setErrors(errors.error);
         });
       }
     });
@@ -42,12 +43,12 @@ function LoginForm({ setCurrentUser, setLoggedIn }) {
 
   return (
     <div className="login-card">
-
       <IonCard class="login-form">
         <form onSubmit={handleSubmit}>
           <IonCardHeader>
             <IonCardTitle>Exploring The Smokies</IonCardTitle>
           </IonCardHeader>
+          <ion-card-subtitle color="danger">{errors}</ion-card-subtitle>
           <IonInput
             class="login-input"
             type="text"

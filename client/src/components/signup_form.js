@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 import {
   IonInput,
   IonCard,
@@ -15,6 +14,7 @@ function Signup({ setCurrentUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errors, setErrors] = useState();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -34,10 +34,18 @@ function Signup({ setCurrentUser }) {
           setCurrentUser(user);
         });
       } else {
-        res.json().then((errors) => {
-          console.error(errors);
+        res.json().then((errorData) => {
+          setErrors(errorData.error);
         });
       }
+    });
+  }
+
+  function renderErrors(errors) {
+    let erorrMessage = Object.entries(errors);
+
+    return erorrMessage.map((error) => {
+      return <li>{`${error[0]}:${error[1].join()}`}</li>
     });
   }
 
@@ -48,6 +56,9 @@ function Signup({ setCurrentUser }) {
           <IonCardHeader>
             <IonCardTitle>Sign Up</IonCardTitle>
           </IonCardHeader>
+          <ion-card-subtitle color='danger'> {errors?renderErrors(errors):""}</ion-card-subtitle>
+         
+
           <IonInput
             class="signup-input"
             type="text"

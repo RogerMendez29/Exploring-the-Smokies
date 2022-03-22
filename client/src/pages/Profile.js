@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import CloudinaryUpload from "../components/CloudinaryUpload";
 import ProfileForm from "../components/profile_form";
+import Trail_card from "../components/trail_card";
 
 import "../css/profile.css";
 import {
@@ -15,12 +16,31 @@ import {
   IonCardTitle,
 } from "@ionic/react";
 
-function Profile({ currentUser, setCurrentUser, renderTrails, trails }) {
+function Profile({
+  currentUser,
+  setCurrentUser,
+  trails,
+  completedTrails,
+  completedTrailIds,
+  setCompletedTrails,
+}) {
   const [editProfile, setEditProfile] = useState(false);
   const [userProfile, setUserProfile] = useState(currentUser.profile);
 
-  
-
+  function renderCompletedTrails() {
+    return trails.map((trail) =>
+      completedTrailIds?.includes(trail.id) ? (
+        <Trail_card
+          setCompletedTrails={setCompletedTrails}
+          completedTrails={completedTrails}
+          completedTrailIds={completedTrailIds}
+          currentUser={currentUser}
+          trail={trail}
+          key={trail.id}
+        />
+      ) : null
+    );
+  }
   function handleUpload(result) {
     const body = {
       profile_picture_url: result.info.secure_url,
@@ -38,17 +58,6 @@ function Profile({ currentUser, setCurrentUser, renderTrails, trails }) {
         setCurrentUser(user);
       });
   }
-
-  const SavedAndCompleted = currentUser.saved_trails.filter((trail) => {
-    return trail.completed === true;
-  });
-  const completedTrailIds = SavedAndCompleted.map((trail) => {
-    return trail.trail_id;
-  });
-  const trailsCompleted = trails.filter((trail) => {
-    return completedTrailIds.includes(trail.id);
-  });
-
   return (
     <IonPage className="trail-page">
       <div className="page-container">
@@ -154,9 +163,7 @@ function Profile({ currentUser, setCurrentUser, renderTrails, trails }) {
                 <div className="profile-title-container">
                   <h2 className="section-title">Completed Trails</h2>
                 </div>
-                <div className="trail-container">
-                  {renderTrails(trailsCompleted)}
-                </div>
+                <div className="trail-container">{renderCompletedTrails()}</div>
               </div>
             </div>
           </div>
