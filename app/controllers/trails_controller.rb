@@ -1,12 +1,14 @@
 class TrailsController < ApplicationController
 
-    before_action :authorize_user, only:[:create, :update, :destroy]
+    before_action :authorize_user, only: [:create, :update, :destroy]
 
 
     def index 
         trail = Trail.all.order(:id)
         render json: trail
     end
+
+    
 
     def show
         trail = Trail.find(params[:id])

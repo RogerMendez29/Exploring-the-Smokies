@@ -23,9 +23,7 @@ class UsersController < ApplicationController
         user = User.create(user_params)
         user_profile = Profile.create(user_id: user.id)
         if user.valid?
-            # session[:user_id] = user.id
-            session[:user_id] = { user: user.id,same_site: "none"}
-
+            session[:user_id] = user.id
             render json: user, status: :ok
         else
             render json: {error: user.errors}, status: :unprocessable_entity

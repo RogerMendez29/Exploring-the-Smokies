@@ -4,6 +4,15 @@ class SavedTrailsController < ApplicationController
         trails = SavedTrail.all 
         render json: trails
     end
+
+    def show
+        saved_trail= SavedTrail.find(params[:id])
+        render json: saved_trail, status: :success
+        
+    end
+    
+
+
     def create 
         saved_trail = SavedTrail.create(saved_trail_params)
         if saved_trail.valid?

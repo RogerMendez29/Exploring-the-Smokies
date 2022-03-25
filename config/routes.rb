@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   post 'uploads/prepare'
   patch "/me", to: "profiles#upload"
 
+  
+
 
 
 

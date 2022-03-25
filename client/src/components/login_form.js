@@ -20,6 +20,7 @@ function LoginForm({ setCurrentUser, setLoggedIn }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    
     fetch("/login", {
       method: "POST",
       headers: {

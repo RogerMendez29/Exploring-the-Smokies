@@ -16,8 +16,14 @@ function Reviews({ currentUser }) {
   const [allReviews, setAllReviews] = useState([]);
 
   useEffect(() => {
+
+  console.log('hey');
+
+    
     setAllReviews(currentUser.reviews);
   }, []);
+
+  
 
   function handleDelete(currentReview) {
     fetch(`/reviews/${currentReview.id}`, {

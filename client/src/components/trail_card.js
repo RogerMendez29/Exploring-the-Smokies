@@ -15,6 +15,7 @@ function Trail_card({
   setCompletedTrails,
   completedTrails,
 }) {
+
   const [isSaved, setisSaved] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
 
@@ -23,7 +24,6 @@ function Trail_card({
   function navToPage() {
     history.push(`/trail_page/${trail.id}`);
   }
-
 
   useEffect(() => {
     if (savedTrailIds?.includes(trail.id)) {
@@ -34,10 +34,12 @@ function Trail_card({
     }
   }, []);
 
-  const savedTrailObject = savedTrails?.filter(
+  
+
+  let savedTrailObject = savedTrails?.filter(
     (savedTrail) => savedTrail.trail_id === trail.id
   );
-  const completedTrailObject = completedTrails?.filter(
+  let completedTrailObject = completedTrails?.filter(
     (completedTrail) => completedTrail.trail_id === trail.id
   );
 
@@ -146,7 +148,7 @@ function Trail_card({
   return (
     <div className="container-card">
       <ion-card className="trail-card">
-        {currentUser.user_can_modify && savedTrailIds? (
+        {currentUser.user_can_modify && savedTrailIds ? (
           <IonButton
             onclick={handleDelete}
             color="danger"

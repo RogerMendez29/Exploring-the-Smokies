@@ -46,6 +46,9 @@ function ProfileForm({
     });
   }
 
+  // console.log('hey');
+  
+
   return (
     <form onSubmit={handleSubmit} className="profile-form">
       <IonCardHeader>

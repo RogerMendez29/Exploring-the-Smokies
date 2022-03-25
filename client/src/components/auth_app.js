@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import NavBar from "./nav_bar";
 import Home from "../pages/Home";
@@ -9,6 +9,10 @@ import Profile from "../pages/Profile";
 import Reviews from "../pages/Reviews";
 import Trail_card from "../components/trail_card";
 import Create from "../pages/Create";
+import { LocationHistory } from "@ionic/react";
+
+// import { Navigate } from "react-router-dom";
+
 
 function AuthApp({
   setCurrentUser,
@@ -20,9 +24,12 @@ function AuthApp({
   setLoggedIn,
 }) {
   const [trails, setTrails] = useState([]);
-
+  const histroy = useHistory();
 
   useEffect(() => {
+    setSavedTrails(currentUser.saved_trails);
+    setCompletedTrails(currentUser.completed_trails);
+
     setLoggedIn(true);
     fetch("/trails")
       .then((res) => res.json())
@@ -36,14 +43,16 @@ function AuthApp({
     }).then((res) => {
       if (res.ok) {
         setCurrentUser(null);
+        histroy.push("/")
       }
     });
   }
 
-  const savedTrailIds = savedTrails.map((trail) => {
+  const savedTrailIds = savedTrails?.map((trail) => {
     return trail.trail_id;
   });
-  const completedTrailIds = completedTrails.map((trail) => {
+
+  const completedTrailIds = completedTrails?.map((trail) => {
     return trail.trail_id;
   });
 
@@ -101,10 +110,11 @@ function AuthApp({
         <Route path="/reviews">
           <Reviews currentUser={currentUser} />
         </Route>
-
-        <Route path="/create">
-          <Create trails={trails} setTrails={setTrails} />
-        </Route>
+        {currentUser.user_can_modify ? (
+          <Route path="/create">
+            <Create trails={trails} setTrails={setTrails} />
+          </Route>
+        ) : null}
 
         <Route path="/">
           <Home
