@@ -13,7 +13,7 @@ function Trail_page({ currentUser }) {
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
-    fetch(`/trails/${id}`)
+    fetch(`/api/trails/${id}`)
       .then((res) => res.json())
       .then((trail) => setTrail(trail));
   }, [showReview]);

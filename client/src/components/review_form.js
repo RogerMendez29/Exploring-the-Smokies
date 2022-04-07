@@ -19,7 +19,7 @@ function ReviewForm({ currentUser, trail, setShowReview}) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch("/reviews", {
+    fetch("/api/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

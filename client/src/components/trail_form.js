@@ -29,7 +29,7 @@ function TrailForm({ setTrails, setTrail, trails, trail }) {
   function handleSubmit(event) {
     event.preventDefault();
     if (trail) {
-      fetch(`/trails/${trail.id}`, {
+      fetch(`/api/trails/${trail.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -54,7 +54,7 @@ function TrailForm({ setTrails, setTrail, trails, trail }) {
         }
       });
     } else {
-      fetch("/trails", {
+      fetch("/api/trails", {
         method: "Post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

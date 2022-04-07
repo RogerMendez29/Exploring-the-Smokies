@@ -45,7 +45,7 @@ function Trail_card({
 
   function handleBookmark() {
     if (savedTrailIds.includes(trail.id)) {
-      fetch(`/saved_trails/${savedTrailObject[0]?.id}`, {
+      fetch(`/api/saved_trails/${savedTrailObject[0]?.id}`, {
         method: "DELETE",
         credentials: "include",
       })
@@ -55,14 +55,14 @@ function Trail_card({
           }
         })
         .then(() => {
-          fetch("/me")
+          fetch("/api/me")
             .then((res) => res.json())
             .then((user) => {
               setSavedTrails(user.saved_trails);
             });
         });
     } else {
-      fetch("/saved_trails", {
+      fetch("/api/saved_trails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ function Trail_card({
           }
         })
         .then(() => {
-          fetch("/me")
+          fetch("/api/me")
             .then((res) => res.json())
             .then((user) => {
               setSavedTrails(user.saved_trails);
@@ -91,7 +91,7 @@ function Trail_card({
 
   function handleComplete() {
     if (completedTrailIds.includes(trail.id)) {
-      fetch(`/completed_trails/${completedTrailObject[0].id}`, {
+      fetch(`/api/completed_trails/${completedTrailObject[0].id}`, {
         method: "DELETE",
         credentials: "include",
       })
@@ -101,14 +101,14 @@ function Trail_card({
           }
         })
         .then(() => {
-          fetch("/me")
+          fetch("/api/me")
             .then((res) => res.json())
             .then((user) => {
               setCompletedTrails(user.completed_trails);
             });
         });
     } else {
-      fetch("/completed_trails", {
+      fetch("/api/completed_trails", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -122,7 +122,7 @@ function Trail_card({
           }
         })
         .then(() => {
-          fetch("/me")
+          fetch("/api/me")
             .then((res) => res.json())
             .then((user) => {
               setCompletedTrails(user.completed_trails);
@@ -132,7 +132,7 @@ function Trail_card({
   }
 
   function handleDelete() {
-    fetch(`/trails/${trail.id}`, {
+    fetch(`/api/trails/${trail.id}`, {
       method: "DELETE",
       credentials: "include",
     }).then((res) => {

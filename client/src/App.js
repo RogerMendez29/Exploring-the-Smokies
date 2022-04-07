@@ -34,7 +34,7 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("/me", {
+    fetch("/api/me", {
       credentials: "include",
     }).then((res) => {
       if (res.ok) {
@@ -43,11 +43,9 @@ function App() {
           setSavedTrails(user.saved_trails);
           setCompletedTrails(user.completed_trails);
           setLoading(true);
-        })
-      }
-      else{
-      setLoading(true);
-
+        });
+      } else {
+        setLoading(true);
       }
     });
   }, []);

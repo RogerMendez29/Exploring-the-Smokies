@@ -31,13 +31,13 @@ function AuthApp({
     setCompletedTrails(currentUser.completed_trails);
 
     setLoggedIn(true);
-    fetch("/trails")
+    fetch("/api/trails")
       .then((res) => res.json())
       .then((trails) => setTrails(trails));
   }, []);
 
   function handleLogOut() {
-    fetch(`/logout`, {
+    fetch(`/api/logout`, {
       method: "DELETE",
       credentials: "include",
     }).then((res) => {

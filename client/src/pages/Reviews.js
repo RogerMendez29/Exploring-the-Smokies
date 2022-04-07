@@ -26,7 +26,7 @@ function Reviews({ currentUser }) {
   
 
   function handleDelete(currentReview) {
-    fetch(`/reviews/${currentReview.id}`, {
+    fetch(`/api/reviews/${currentReview.id}`, {
       method: "DELETE",
       credentials: "include",
     }).then(() => {
@@ -67,7 +67,7 @@ function Reviews({ currentUser }) {
     const textAreaValue = document.querySelector(`#textArea-${id}`).value;
 
     e.preventDefault();
-    fetch(`/reviews/${id}`, {
+    fetch(`/api/reviews/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
