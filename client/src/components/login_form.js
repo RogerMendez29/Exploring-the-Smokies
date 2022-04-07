@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/login.css";
 
-import { Redirect, useHistory, Link } from "react-router-dom";
+import { Redirect, useHistory, Link} from "react-router-dom";
 import {
   IonInput,
   IonCard,
@@ -16,11 +16,15 @@ function LoginForm({ setCurrentUser, setLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState();
+  const history = useHistory();
 
+  function navToSignup() {
+    history.push("/signup")
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    
+
     fetch("/api/login", {
       method: "POST",
       headers: {
@@ -69,7 +73,7 @@ function LoginForm({ setCurrentUser, setLoggedIn }) {
           <IonButton expand="block" class="login-btn" type="submit">
             Login
           </IonButton>
-          <IonItem href="/signup" className="ion-activated">
+          <IonItem onClick={navToSignup} className="ion-activated">
             <IonLabel>Need an account? Sign Up</IonLabel>
           </IonItem>
         </form>
